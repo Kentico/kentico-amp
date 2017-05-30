@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{384D9449-5A50-4CB2-AF53-684D23826F4B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AcceleratedMobilePages</RootNamespace>
+    <AssemblyName>AcceleratedMobilePages</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CMS.Base, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.Base.Web.UI, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.Base.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.Core, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.DataEngine, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.DataEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.DeviceProfiles, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.DeviceProfiles.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.DocumentEngine, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.DocumentEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.FormEngine, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.FormEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.FormEngine.Web.UI, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.FormEngine.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.Helpers, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.Localization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.MacroEngine, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.MacroEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.Membership, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.Membership.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.OutputFilter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.OutputFilter.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.PortalEngine, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.PortalEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.PortalEngine.Web.UI, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.PortalEngine.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.SiteProvider, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.SiteProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="CMS.UIControls, Version=10.0.0.0, Culture=neutral, PublicKeyToken=834b12a258f213f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CMS.UIControls.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\CMS\App_Data\CMSModules\AcceleratedMobilePages\UI\Grids\AcceleratedMobilePages_AmpFilter\default.xml" />
+    <Content Include="..\CMS\CMSModules\AcceleratedMobilePages\Default.aspx" />
+    <Content Include="packages.AcceleratedMobilePages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AmpFilter.cs" />
+    <Compile Include="AmpFilterEditExtender.cs" />
+    <Compile Include="AmpFilterInfo.cs" />
+    <Compile Include="AmpFilterInfoProvider.cs" />
+    <Compile Include="AmpFilterListExtender.cs" />
+    <Compile Include="AmpFilterModule.cs" />
+    <Compile Include="CheckStateHelper.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="CustomMacro.cs" />
+    <Compile Include="CustomMacroMethods.cs" />
+    <Compile Include="MacroNamespace.cs" />
+    <Compile Include="..\CMS\CMSModules\AcceleratedMobilePages\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\CMS\CMSModules\AcceleratedMobilePages\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AcceleratedMobilePagesAssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\CMS\CMSResources\AcceleratedMobilePages\Default.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55310</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55310/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

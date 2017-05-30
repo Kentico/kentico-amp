@@ -1,0 +1,23 @@
+# Ignore all
+*
+
+# Add folders
+!*/
+
+# Add .gitignore
+!/.gitignore 
+
+# Handle the module assembly
+/AcceleratedMobilePages/bin
+/AcceleratedMobilePages/obj
+!/AcceleratedMobilePages/**/*.cs
+!/AcceleratedMobilePages/**/*.csproj
+!/AcceleratedMobilePages/**/*.config
+
+# Add the DB objects
+!/CMS/App_Data/CIRepository/**/AcceleratedMobilePages*
+!/CMS/App_Data/CIRepository/**/ampfilter*
+
+!/CMS/App_Data/CMSModules/AcceleratedMobilePages/**/*.xml
+!/CMS/CMSModules/**/AcceleratedMobilePages/*.*
+!/CMS/CMSResources/**/AcceleratedMobilePages/*.*
