@@ -8,13 +8,15 @@ namespace AcceleratedMobilePages.AcceleratedMobilePages
 {
     public static class CheckStateHelper
     {
-		/// <summary>
-        /// Returns the state of the filter:
+        /// <summary>
+        /// Gets the state of the AMP output filter.  
+        /// </summary>
+        /// <returns>
         ///  DISABLED - filter is disabled for current page
         ///  ENABLED_AND_ACTIVE - filter is enabled for current page and activated (page is being accessed from AMP domain)
         ///  ENABLED_AND_INACTIVE - filter is enabled for current page but not active
-        /// </summary>
-        public static int CheckFilterState()
+        /// </returns>
+        public static int GetFilterState()
         {
             // Check if AMP filter is enabled in site settings
             if (!SettingsKeyInfoProvider.GetBoolValue(SiteContext.CurrentSiteName + ".AMPFilterEnabled"))

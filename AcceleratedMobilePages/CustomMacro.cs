@@ -3,12 +3,10 @@ using CMS;
 using CMS.DataEngine;
 using CMS.MacroEngine;
 
-// Registers the custom module into the system
 [assembly: RegisterModule(typeof(CustomMacro))]
-
 namespace AcceleratedMobilePages
 {
-    class CustomMacro : Module
+    public class CustomMacro : Module
     {
         // Module class constructor, the system registers the module under the name "CustomMacros"
         public CustomMacro()

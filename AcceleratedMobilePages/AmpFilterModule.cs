@@ -6,10 +6,9 @@ using CMS.DataEngine;
 using CMS.OutputFilter;
 
 [assembly: RegisterModule(typeof(AmpFilterModule))]
-
 namespace AcceleratedMobilePages
 {
-    class AmpFilterModule : Module
+    public class AmpFilterModule : Module
     {
         private AmpFilter ampFilter;
 

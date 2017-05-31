@@ -5,7 +5,7 @@ namespace AcceleratedMobilePages
 {
     [Extension(typeof(CustomMacroMethods))]
 
-    class CustomMacroNamespace : MacroNamespace<CustomMacroNamespace>
+    public class CustomMacroNamespace : MacroNamespace<CustomMacroNamespace>
     {
     }
 }

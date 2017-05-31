@@ -8,7 +8,7 @@ namespace AcceleratedMobilePages
         [MacroMethod(typeof(bool), "Returns true if the current page is AMP page.", 1)]
         public static object IsAmpPage(EvaluationContext context, params object[] parameters)
         {
-            return (CheckStateHelper.CheckFilterState() == Constants.ENABLED_AND_ACTIVE);
+            return (CheckStateHelper.GetFilterState() == Constants.ENABLED_AND_ACTIVE);
         }
     }
 }

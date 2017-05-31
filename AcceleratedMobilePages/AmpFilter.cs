@@ -12,22 +12,22 @@ using HtmlAgilityPack;
 
 namespace AcceleratedMobilePages
 {
-    class AmpFilter
+    public class AmpFilter
     {
         /// <summary>
         /// String for importing custom elements in head tag
         /// </summary>
-        private string customElements;
+        private string customElementsScripts;
 
 
-		/// <summary>
+        /// <summary>
         /// If the filter is enabled for current page, final HTML will be modified
         /// </summary>
         /// <param name="filter">Output filter</param>
         /// <param name="finalHtml">Final HTML string</param>
         public void OnFilterActivated(ResponseOutputFilter filter, ref string finalHtml)
         {
-            int state = CheckStateHelper.CheckFilterState();
+            int state = CheckStateHelper.GetFilterState();
             if (state == Constants.ENABLED_AND_ACTIVE)
             {
                 finalHtml = TransformToAmpHtml(finalHtml);
@@ -39,20 +39,20 @@ namespace AcceleratedMobilePages
         }
 
 
-		/// <summary>
+        /// <summary>
         /// Returns modified HTML in AMP HTML markup
         /// </summary>
         /// <param name="finalHtml">Final HTML string</param>
         private string TransformToAmpHtml(string finalHtml)
         {
-            customElements = "";
-            
+            customElementsScripts = "";
+
             // Process the resulting HTML using Html Agility Pack parser
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(finalHtml);
-            RemoveRestrictedElements(ref doc);
-            ResolveComplexElements(ref doc);
-            ReplaceRegularTagsByAmpTags(ref doc);
+            RemoveRestrictedElements(doc);
+            ResolveComplexElements(doc);
+            ReplaceRegularTagsByAmpTags(doc);
 
             // Do the rest using regular expressions
             finalHtml = InsertCompulsoryMarkupAndCss(doc.DocumentNode.InnerHtml);
@@ -62,13 +62,13 @@ namespace AcceleratedMobilePages
         }
 
 
-		/// <summary>
+        /// <summary>
         /// Returns final HTML with appended link pointing to AMP version of current page
         /// </summary>
         /// <param name="finalHtml">Final HTML string</param>
         private string AppendAmpHtmlLink(string finalHtml)
         {
-            string ampLink = CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP + 
+            string ampLink = CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP +
                              SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterDomainAlias") +
                              DocumentContext.CurrentAliasPath +
                              SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
@@ -83,17 +83,17 @@ namespace AcceleratedMobilePages
         /// <summary>
         /// Removes elements restricted by AMP HTML standard
         /// </summary>
-        /// <param name="doc">Reference to complete HtmlDocument</param>
-        private void RemoveRestrictedElements(ref HtmlDocument doc)
+        /// <param name="doc">The complete HtmlDocument</param>
+        private void RemoveRestrictedElements(HtmlDocument doc)
         {
             // Remove restricted elements
             foreach (var rule in Constants.XPATH_RESTRICTED_ELEMENTS)
             {
-                RemoveElement(ref doc, rule);
+                RemoveElement(doc, rule);
             }
 
             // Remove attributes
-            RemoveAttribute(ref doc, Constants.XPATH_ATTR_STYLE, Constants.XPATH_ATTR_STYLE_NAME);
+            RemoveAttribute(doc, Constants.XPATH_ATTR_STYLE, Constants.XPATH_ATTR_STYLE_NAME);
         }
 
 
@@ -126,8 +126,8 @@ namespace AcceleratedMobilePages
         /// <summary>
         /// Resolves more complex restrictions put on specific elements using HTML parser
         /// </summary>
-        /// <param name="doc">Reference to complete HtmlDocument</param>
-        private void ResolveComplexElements(ref HtmlDocument doc)
+        /// <param name="doc">The complete HtmlDocument</param>
+        private void ResolveComplexElements(HtmlDocument doc)
         {
             // Script tags source URLs from settings
             string ampCustomForm = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_FORM, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterFormScriptUrl"));
@@ -156,11 +156,12 @@ namespace AcceleratedMobilePages
                 }
 
                 // At least one <form> tag is used, we need to import custom element
-                customElements += ampCustomForm + Constants.NEW_LINE;
+                customElementsScripts += ampCustomForm + Constants.NEW_LINE;
             }
 
             // Process included fonts, only fonts from group of providers are allowed
             nodes = doc.DocumentNode.SelectNodes(Constants.XPATH_FONT_STYLESHEET);
+
             // List of font providers from settings
             string[] fontProviders = SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AmpFilterFontProviders").Split('\n');
             if (nodes != null)
@@ -191,31 +192,29 @@ namespace AcceleratedMobilePages
         /// <summary>
         /// Replaces standard HTML tags by special AMP HTML tags and appends import scripts for custom elements
         /// </summary>
-        /// <param name="doc">Reference to complete HtmlDocument</param>
-        private void ReplaceRegularTagsByAmpTags(ref HtmlDocument doc)
+        /// <param name="doc">The complete HtmlDocument</param>
+        private void ReplaceRegularTagsByAmpTags(HtmlDocument doc)
         {
-            // Script tags source URLs from settings
-            string ampCustomVideo = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_VIDEO, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterVideoScriptUrl"));
-            string ampCustomAudio = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_AUDIO, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterAudioScriptUrl"));
-            string ampCustomIframe = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_IFRAME, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterIframeScriptUrl"));
-
-            ReplaceElement(ref doc, Constants.XPATH_IMG, Constants.XPATH_IMG_REPLACEMENT);
-            if (ReplaceElement(ref doc, Constants.XPATH_VIDEO, Constants.XPATH_VIDEO_REPLACEMENT))
+            ReplaceElement(doc, Constants.XPATH_IMG, Constants.XPATH_IMG_REPLACEMENT);
+            if (ReplaceElement(doc, Constants.XPATH_VIDEO, Constants.XPATH_VIDEO_REPLACEMENT))
             {
-                customElements += ampCustomVideo + Constants.NEW_LINE;
+                string ampCustomVideo = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_VIDEO, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterVideoScriptUrl"));
+                customElementsScripts += ampCustomVideo + Constants.NEW_LINE;
             }
-            if (ReplaceElement(ref doc, Constants.XPATH_AUDIO, Constants.XPATH_AUDIO_REPLACEMENT))
+            if (ReplaceElement(doc, Constants.XPATH_AUDIO, Constants.XPATH_AUDIO_REPLACEMENT))
             {
-                customElements += ampCustomAudio + Constants.NEW_LINE;
+                string ampCustomAudio = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_AUDIO, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterAudioScriptUrl"));
+                customElementsScripts += ampCustomAudio + Constants.NEW_LINE;
             }
-            if (ReplaceElement(ref doc, Constants.XPATH_IFRAME, Constants.XPATH_IFRAME_REPLACEMENT))
+            if (ReplaceElement(doc, Constants.XPATH_IFRAME, Constants.XPATH_IFRAME_REPLACEMENT))
             {
-                customElements += ampCustomIframe + Constants.NEW_LINE;
+                string ampCustomIframe = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_IFRAME, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterIframeScriptUrl"));
+                customElementsScripts += ampCustomIframe + Constants.NEW_LINE;
             }
         }
 
 
-		/// <summary>
+        /// <summary>
         /// Inserts compulsory AMP markup and inline CSS
         /// </summary>
         /// <param name="finalHtml">Final HTML string</param>
@@ -234,31 +233,29 @@ namespace AcceleratedMobilePages
 
             // CSS stylesheet to be inlined to finalHtml
             string styles = GetStylesheetText();
-            
-            // This link points to the regular HTML version of AMP page
+
+            // Create a link pointing to the regular HTML version of the page
             string canonicalLink = CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP +
                                    SiteContext.CurrentSite.DomainName + DocumentContext.CurrentAliasPath +
                                    SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
-            
-            // Concatenate all the compulsory markup together with CSS styles
-            string compulsoryMarkup = headTag + Constants.NEW_LINE +
-                                      Constants.AMP_CHARSET + Constants.NEW_LINE +
-                                      ampRuntimeScript + Constants.NEW_LINE +
-                                      customElements +
-                                      String.Format(Constants.AMP_CANONICAL_HTML_LINK, canonicalLink) + Constants.NEW_LINE +
-                                      Constants.AMP_VIEWPORT + Constants.NEW_LINE +
-                                      Constants.AMP_BOILERPLATE_CODE + Constants.NEW_LINE +
-                                      String.Format(Constants.AMP_CUSTOM_STYLE, styles) + Constants.NEW_LINE;
 
-            // Insert compulsory markup
-            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_HEAD, compulsoryMarkup);
+            // Extend the <head> tag with the compulsory markup and CSS styles
+            headTag +=  Constants.NEW_LINE +
+                        Constants.AMP_CHARSET + Constants.NEW_LINE +
+                        ampRuntimeScript + Constants.NEW_LINE +
+                        customElementsScripts +
+                        String.Format(Constants.AMP_CANONICAL_HTML_LINK, canonicalLink) + Constants.NEW_LINE +
+                        Constants.AMP_VIEWPORT + Constants.NEW_LINE +
+                        Constants.AMP_BOILERPLATE_CODE + Constants.NEW_LINE +
+                        String.Format(Constants.AMP_CUSTOM_STYLE, styles) + Constants.NEW_LINE;
+            
+            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_HEAD, headTag);
             return finalHtml;
         }
 
 
         /// <summary>
-        /// Helper function
-        /// Returns CSS stylesheet for current page
+        /// Returns CSS stylesheet for current page.
         /// Stylesheet can be:
         ///     - normal css of current page
         ///     - default css for all AMP pages
@@ -280,18 +277,20 @@ namespace AcceleratedMobilePages
                 if (cssID == 0)
                 {
                     cssText = DocumentContext.CurrentDocumentStylesheet.StylesheetText;
-                } else
-                // Using default AMP CSS stylesheet
+                }
+                else
                 {
+                    // Use default AMP CSS stylesheet
                     var cssInfo = CssStylesheetInfoProvider.GetCssStylesheetInfo(cssID);
                     if (cssInfo != null)
                     {
                         cssText = cssInfo.StylesheetText;
                     }
                 }
-            } else
-            // Using specific AMP CSS set for this page
+            }
+            else
             {
+                // Use specific AMP CSS set for this page
                 var cssInfo = CssStylesheetInfoProvider.GetCssStylesheetInfo(q.FirstObject.StylesheetID);
                 if (cssInfo != null)
                 {
@@ -301,19 +300,18 @@ namespace AcceleratedMobilePages
 
             // Resolve macros
             cssText = MacroResolver.Resolve(cssText);
-            
+
             // Resolve client URL
             return HTMLHelper.ResolveCSSClientUrls(cssText, CMSHttpContext.Current.Request.Url.ToString());
         }
 
 
-		/// <summary>
-        /// Helper function
-        /// Removes element using HTML parser
+        /// <summary>
+        /// Removes element using HTML parser.
         /// </summary>
-        /// <param name="doc">Reference to complete HtmlDocument</param>
+        /// <param name="doc">The complete HtmlDocument</param>
         /// <param name="elementXPath">XPath specifying the element</param>
-        private void RemoveElement(ref HtmlDocument doc, string elementXPath)
+        private void RemoveElement(HtmlDocument doc, string elementXPath)
         {
             HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes(elementXPath);
             if (nodes != null)
@@ -326,14 +324,13 @@ namespace AcceleratedMobilePages
         }
 
 
-		/// <summary>
-        /// Helper function
-        /// Replaces element using HTML parser and return true if at least one node was replaced
+        /// <summary>
+        /// Replaces element using HTML parser and return true if at least one node was replaced.
         /// </summary>
-        /// <param name="doc">Reference to complete HtmlDocument</param>
+        /// <param name="doc">The complete HtmlDocument</param>
         /// <param name="xPath">XPath specifying the element</param>
         /// <param name="replacement">New name of the element</param>
-        private bool ReplaceElement(ref HtmlDocument doc, string xPath, string replacement)
+        private bool ReplaceElement(HtmlDocument doc, string xPath, string replacement)
         {
             var nodes = doc.DocumentNode.SelectNodes(xPath);
             if (nodes != null)
@@ -347,14 +344,13 @@ namespace AcceleratedMobilePages
         }
 
 
-		/// <summary>
-        /// Helper function
-        /// Replaces element's attribute using HTML parser
+        /// <summary>
+        /// Replaces element's attribute using HTML parser.
         /// </summary>
-        /// <param name="doc">Reference to complete HtmlDocument</param>
+        /// <param name="doc">The complete HtmlDocument</param>
         /// <param name="xPath">XPath specifying the element</param>
         /// <param name="attrName">Name of the attribute</param>
-        private void RemoveAttribute(ref HtmlDocument doc, string xPath, string attrName)
+        private void RemoveAttribute(HtmlDocument doc, string xPath, string attrName)
         {
             var nodes = doc.DocumentNode.SelectNodes(xPath);
             if (nodes != null)

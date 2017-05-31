@@ -6,6 +6,7 @@ using CMS.Base.Web.UI;
 using CMS.DocumentEngine;
 using CMS.Helpers;
 using CMS.Localization;
+using CMS.Membership;
 using CMS.PortalEngine;
 using CMS.SiteProvider;
 using CMS.UIControls;
@@ -54,13 +55,13 @@ namespace AcceleratedMobilePages
                 case "pagename":
                     // Gets the nodeGUID of the of the page
                     nodeGuid = ValidationHelper.GetString(parameter, "");
-                    tn = GetTreeNodeForGuid(nodeGuid);
+                    tn = GetTreeNodeByGuid(nodeGuid);
                     return tn != null ? tn.DocumentName : nodeGuid;
 
                 case "pagenamepath":
                     // Gets the nodeGUID of the of the page
                     nodeGuid = ValidationHelper.GetString(parameter, "");
-                    tn = GetTreeNodeForGuid(nodeGuid);
+                    tn = GetTreeNodeByGuid(nodeGuid);
                     return tn != null ? tn.DocumentNamePath : nodeGuid;
 
                 case "pagecss":
@@ -84,15 +85,13 @@ namespace AcceleratedMobilePages
 
 
         /// <summary>
-        /// Helper function.
-        /// Returns treenode for requested node GUID
+        /// Gets <see cref="TreeProvider"/> for requested node GUID.
         /// </summary>
         /// <param name="nodeGuid">Node GUID of requested object</param>
-        private TreeNode GetTreeNodeForGuid(String nodeGuid)
+        private TreeNode GetTreeNodeByGuid(String nodeGuid)
         {
-            TreeProvider tp = new TreeProvider();
-            TreeNode tn = tp.SelectSingleNode(new Guid(nodeGuid), LocalizationContext.CurrentCulture.CultureCode, SiteContext.CurrentSiteName);
-            return tn;
+            TreeProvider tp = new TreeProvider(MembershipContext.AuthenticatedUser);
+            return tp.SelectSingleNode(new Guid(nodeGuid), LocalizationContext.CurrentCulture.CultureCode, SiteContext.CurrentSiteName);
         }
     }
 }
