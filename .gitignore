@@ -15,8 +15,8 @@
 !/AcceleratedMobilePages/**/*.config
 
 # Add the DB objects
-!/CMS/App_Data/CIRepository/**/AcceleratedMobilePages*
-!/CMS/App_Data/CIRepository/**/ampfilter*
+!/CMS/App_Data/CIRepository/@global/**/AcceleratedMobilePages*
+!/CMS/App_Data/CIRepository/@global/**/ampfilter*
 
 !/CMS/App_Data/CMSModules/AcceleratedMobilePages/**/*.xml
 !/CMS/CMSModules/**/AcceleratedMobilePages/*.*
