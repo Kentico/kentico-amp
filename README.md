@@ -7,7 +7,7 @@ Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS 
 ### Installation  
 
 
-### Enabling the AMP Module
+### Enabling the AMP module
 
 To enable AMP Filter on a site:
 
@@ -17,7 +17,7 @@ To enable AMP Filter on a site:
 4. Go to Sites -> Edit site -> Domain aliases
 5. Create a new domain alias corresponding with AMP domain name specified earlier
 
-### Activating AMP Filter for a Specific Page
+### Activating AMP filter for a specific page
 
 There are two options how to do it:
 
@@ -25,9 +25,9 @@ There are two options how to do it:
 
 *	In Pages application, by selecting a particular page from the content tree, navigating to Properties -> AMP filter, and then selecting "Enable AMP for this page".
 
-### Setting the CSS Stylesheets
+### Setting up CSSs
 
-There are several options how to include CSS stylesheets into an AMP page:
+There are several options how to include cascading style sheets into an AMP page:
 
 *	Set a default CSS stylesheet for the whole site (in Settings -> Content -> Output filter -> AMP Filter).
 
@@ -37,7 +37,7 @@ There are several options how to include CSS stylesheets into an AMP page:
 
 * All the options above can be combined throughout the website.
 
-### Customizing the Content of AMP Pages
+### Customizing the content of AMP pages
 
 The AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, therefore they can't be inserted automatically into the page's source code. This is how to use extended AMP components and at the same time a method how to use regular HTML for customization of an AMP page:
  
@@ -54,7 +54,7 @@ The AMP standard offers a lot of components or tags which do not have an ordinar
   * Set the previous macro as enable condition
   * For every extended AMP component, insert the import script into the head webpart
 
-## How AMP Filter Works
+## How AMP filter works
 
 After AMP Filter is triggered on a specific page, which has the AMP Filter enabled:
 
@@ -75,12 +75,12 @@ This transformation is performed using HtmlAgilityPack library. It creates the D
 
 AMP filter performs few corrections using regular expressions. The reason is, that these corrections were not possible using parser from HtmlAgilityPack library.
 
-### CSS Stylesheets
+### Cascading style sheets
 
 AMP Filter does not transform CSS stylesheets in any way. The developer must ensure the stylesheet complies with the [AMP HTML specification - stylesheet restrictions](https://www.ampproject.org/docs/reference/spec#stylesheets).
  
 
-### Global Settings
+### Global settings
 
 AMP Filter has two types of global settings. Font providers settings and script URL settings for five different AMP HTML elements. Both types of settings depend directly on the AMP HTML specification and should be changed only according to the AMP specification.
 
@@ -88,7 +88,7 @@ Font providers is a list of white-listed font providers of custom fonts availabl
 
 Script URL settings solves the situation, when AMP releases new version of AMP runtime script or other scripts (the version is a part of the URL).
 
-## Responsibilities of the Author
+## Responsibilities of the developer
 
 * Write valid CSS stylesheets according to the [AMP specification](https://www.ampproject.org/docs/reference/spec#stylesheets)
 * Follow the [AMP specificationwhen](https://www.ampproject.org/docs/reference/spec#svg) using SVG tags (AMP Filter does not affect SVG tags at all)
@@ -97,7 +97,7 @@ Script URL settings solves the situation, when AMP releases new version of AMP r
 * In case of sites with complex styling, the stylesheets need to be reduced not to exceed 50kB in total.
 * If a page contains scripts, social media embeds, advertisements, or other interactive elements, the elements need to be replaced with [AMP extended components](https://www.ampproject.org/docs/reference/components).
 
-## Scenarios Solved by AMP Filter
+## Scenarios covered by AMP filter
 
 * In case of simple sites with CSSs smaller than 50kB (that don't break any [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
 
