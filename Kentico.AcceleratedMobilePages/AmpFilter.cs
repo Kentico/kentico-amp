@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using AcceleratedMobilePages.AcceleratedMobilePages;
 using CMS.DataEngine;
 using CMS.DocumentEngine;
 using CMS.Helpers;
@@ -10,7 +9,7 @@ using CMS.PortalEngine;
 using CMS.SiteProvider;
 using HtmlAgilityPack;
 
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     public class AmpFilter
     {

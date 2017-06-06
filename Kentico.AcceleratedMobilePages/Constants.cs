@@ -1,4 +1,4 @@
-﻿namespace AcceleratedMobilePages
+﻿namespace Kentico.AcceleratedMobilePages
 {
     public class Constants
     {

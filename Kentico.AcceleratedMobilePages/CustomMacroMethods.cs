@@ -1,7 +1,6 @@
-﻿using AcceleratedMobilePages.AcceleratedMobilePages;
-using CMS.MacroEngine;
+﻿using CMS.MacroEngine;
 
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     public class CustomMacroMethods : MacroMethodContainer
     {

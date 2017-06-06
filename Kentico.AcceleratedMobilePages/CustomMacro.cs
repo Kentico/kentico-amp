@@ -1,10 +1,10 @@
-﻿using AcceleratedMobilePages;
-using CMS;
+﻿using CMS;
 using CMS.DataEngine;
 using CMS.MacroEngine;
+using Kentico.AcceleratedMobilePages;
 
 [assembly: RegisterModule(typeof(CustomMacro))]
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     public class CustomMacro : Module
     {

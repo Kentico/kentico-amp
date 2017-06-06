@@ -8,11 +8,11 @@
 !/.gitignore 
 
 # Handle the module assembly
-/AcceleratedMobilePages/bin
-/AcceleratedMobilePages/obj
-!/AcceleratedMobilePages/**/*.cs
-!/AcceleratedMobilePages/**/*.csproj
-!/AcceleratedMobilePages/**/*.config
+/Kentico.AcceleratedMobilePages/bin
+/Kentico.AcceleratedMobilePages/obj
+!/Kentico.AcceleratedMobilePages/**/*.cs
+!/Kentico.AcceleratedMobilePages/**/*.csproj
+!/Kentico.AcceleratedMobilePages/**/*.config
 
 # Add the DB objects
 !/CMS/App_Data/CIRepository/@global/**/Kentico.AcceleratedMobilePages*
@@ -20,6 +20,6 @@
 !/CMS/App_Data/CIRepository/@global/**/ampfilter*
 !/CMS/App_Data/CIRepository/@global/**/ampfilter*/*.*
 
-!/CMS/App_Data/CMSModules/AcceleratedMobilePages/**/*.xml
-!/CMS/CMSModules/**/AcceleratedMobilePages/*.*
-!/CMS/CMSResources/**/AcceleratedMobilePages/*.*
+!/CMS/App_Data/CMSModules/Kentico.AcceleratedMobilePages/**/*.xml
+!/CMS/CMSModules/**/Kentico.AcceleratedMobilePages/*.*
+!/CMS/CMSResources/**/Kentico.AcceleratedMobilePages/*.*

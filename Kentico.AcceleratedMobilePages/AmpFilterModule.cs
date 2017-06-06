@@ -1,12 +1,12 @@
 ﻿using System;
-using AcceleratedMobilePages;
 using CMS;
 using CMS.Base;
 using CMS.DataEngine;
 using CMS.OutputFilter;
+using Kentico.AcceleratedMobilePages;
 
 [assembly: RegisterModule(typeof(AmpFilterModule))]
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     public class AmpFilterModule : Module
     {

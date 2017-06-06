@@ -1,7 +1,7 @@
 ﻿using CMS.Base;
 using CMS.MacroEngine;
 
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     [Extension(typeof(CustomMacroMethods))]
 

@@ -1,7 +1,7 @@
 using System;
 using CMS.DataEngine;
 
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {    
     /// <summary>
     /// Class providing AmpFilterInfo management.

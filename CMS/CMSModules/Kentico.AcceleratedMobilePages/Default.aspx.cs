@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using AcceleratedMobilePages;
 using CMS.Base.Web.UI;
 using CMS.Core;
 using CMS.DataEngine;
 using CMS.Helpers;
 using CMS.SiteProvider;
 using CMS.UIControls;
+using Kentico.AcceleratedMobilePages;
 
 [SaveAction(0)]
 [UIElement(ModuleName.CONTENT, "Properties.AmpFilter")]

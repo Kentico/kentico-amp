@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using AcceleratedMobilePages;
 using CMS;
 using CMS.Base.Web.UI;
 using CMS.DocumentEngine;
@@ -10,10 +9,11 @@ using CMS.Membership;
 using CMS.PortalEngine;
 using CMS.SiteProvider;
 using CMS.UIControls;
+using Kentico.AcceleratedMobilePages;
 
 [assembly: RegisterCustomClass("AmpFilterListExtender", typeof(AmpFilterListExtender))]
 
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     class AmpFilterListExtender : ControlExtender<UniGrid>
     {

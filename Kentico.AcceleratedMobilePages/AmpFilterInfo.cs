@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Runtime.Serialization;
-using AcceleratedMobilePages;
 using CMS;
 using CMS.DataEngine;
 using CMS.DocumentEngine;
 using CMS.Helpers;
 using CMS.Localization;
 using CMS.SiteProvider;
+using Kentico.AcceleratedMobilePages;
 
 [assembly: RegisterObjectType(typeof(AmpFilterInfo), AmpFilterInfo.OBJECT_TYPE)]
     
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     /// <summary>
     /// AmpFilterInfo data container class.

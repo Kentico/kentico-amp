@@ -4,7 +4,7 @@ using CMS.Helpers;
 using CMS.PortalEngine;
 using CMS.SiteProvider;
 
-namespace AcceleratedMobilePages.AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     public static class CheckStateHelper
     {

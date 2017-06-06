@@ -1,13 +1,13 @@
 ﻿using System;
-using AcceleratedMobilePages;
 using CMS;
 using CMS.Base.Web.UI;
 using CMS.PortalEngine.Web.UI;
 using CMS.SiteProvider;
+using Kentico.AcceleratedMobilePages;
 
 [assembly: RegisterCustomClass("AmpFilterEditExtender", typeof(AmpFilterEditExtender))]
 
-namespace AcceleratedMobilePages
+namespace Kentico.AcceleratedMobilePages
 {
     class AmpFilterEditExtender : ControlExtender<UIForm>
     {
