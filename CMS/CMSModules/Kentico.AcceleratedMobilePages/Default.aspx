@@ -28,7 +28,7 @@
                     ResourceString="AcceleratedMobilePages.EditCtrlCss" DisplayColon="true" />
             </div>
             <div class="editing-form-value-cell">
-                <cms:FormControl runat="server" ID="selectStyleSheet" FormControlName="AcceleratedMobilePages.StylesheetSelector" />
+                <cms:FormControl runat="server" ID="selectStyleSheet" FormControlName="Kentico.AcceleratedMobilePages.StylesheetSelector" />
             </div>
         </div>
     </div>
