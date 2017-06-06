@@ -1,45 +1,45 @@
 # Accelerated Mobile Pages Module for Kentico
 
-Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and Kentico EMS. This module consists of an [Output Filter](https://docs.kentico.com/k10/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
+Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k10/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
 
 ## Usage
-
-Typical way how the user will interact with AMP Filter in Kentico administration interface.
 
 ### Installation  
 
 
-### Enabling the AMP Filter
+### Enabling the AMP Module
 
 To enable AMP Filter on a site:
 
-* Go to Settings -> Content -> Output filter -> AMP Filter
-* Check "Enable AMP Filter"
-* Set an AMP domain name (e.g.: `amp.domain.tld` if the web is hosted on www.domain.tld).
-* Go to Sites -> Edit site -> Domain aliases
-* Create a new domain alias corresponding with AMP domain name specified earlier
+1. Go to Settings -> Content -> Output filter -> AMP Filter
+2. Check "Enable AMP Filter"
+3. Set an AMP domain name (e.g.: `amp.domain.tld` if the web is hosted on www.domain.tld).
+4. Go to Sites -> Edit site -> Domain aliases
+5. Create a new domain alias corresponding with AMP domain name specified earlier
 
-### Activating AMP Filter for Specific Page
+### Activating AMP Filter for a Specific Page
 
 There are two options how to do it:
 
-1. Using the custom application Accelerated Mobile Pages from application list. Adding pages by selecting them from the site content tree.
+* In Accelerated Mobile Pages application, add pages by selecting them from the site content tree.
 
-2.	In Pages application, by selecting particular page from the content tree and navigating to Properties->AMP filter, then checking the check boxEnable AMP for this page.
+*	In Pages application, by selecting a particular page from the content tree, navigating to Properties -> AMP filter, and then selecting "Enable AMP for this page".
 
 ### Setting the CSS Stylesheets
 
-There are three options how to include CSS stylesheets in an AMP page:
+There are several options how to include CSS stylesheets into an AMP page:
 
-1.	Set default CSS stylesheet in Settings->Content->Output filter->AMP Filter and this CSS stylesheet will be used as default for every AMP page.
+*	Set a default CSS stylesheet for the whole site (in Settings -> Content -> Output filter -> AMP Filter).
 
-2.	Set CSS stylesheet for every single AMP page separately (or use default CSS from the previous option).
+*	Set a CSS stylesheet for every AMP page separately by unchecking "Use default stylesheet" in properties of a page.
 
-3.	If none of the previous options is set, AMP Filter will use the regular CSS stylesheet assigned to the page (either default stylesheet of the whole site, or stylesheet set for current page). This option is not recommended - stylesheet could be bigger than 50kB and if it is a stylesheet for the whole site, it contains redundant data!
+*	If none of the previous options is set, the AMP Filter will use the regular CSS stylesheet assigned to the page (either the site's default stylesheet, or the page-specifc one). This option is not recommended as the stylesheet could be bigger than 50kB (e.g. if it contains styles for the whole website).
+
+* All the options above can be combined throughout the website.
 
 ### Customizing the Content of AMP Pages
 
-AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, therefore they can not be inserted automatically into the page's source code. This is how to use extended AMP components and at the same time a method how to use regular HTML for customization of an AMP page:
+The AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, therefore they can't be inserted automatically into the page's source code. This is how to use extended AMP components and at the same time a method how to use regular HTML for customization of an AMP page:
  
 * Add new web part to the page: Static HTML
 * Set this macro as the visibility condition for the web part:
