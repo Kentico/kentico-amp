@@ -1,12 +1,17 @@
 using System;
+using System.Data;
+
+using CMS.Base;
 using CMS.DataEngine;
+using CMS.Helpers;
+using CMS.SiteProvider;
 
 namespace Kentico.AcceleratedMobilePages
-{    
+{
     /// <summary>
     /// Class providing AmpFilterInfo management.
     /// </summary>
-    public class AmpFilterInfoProvider : AbstractInfoProvider<AmpFilterInfo, AmpFilterInfoProvider>
+    public partial class AmpFilterInfoProvider : AbstractInfoProvider<AmpFilterInfo, AmpFilterInfoProvider>
     {
         #region "Constructors"
 
@@ -96,19 +101,19 @@ namespace Kentico.AcceleratedMobilePages
         {
             return ProviderObject.GetAmpFiltersInternal(siteId);
         }
-        
+
         #endregion
 
 
         #region "Internal methods - Basic"
-	
+
         /// <summary>
         /// Returns a query for all the AmpFilterInfo objects.
         /// </summary>
         protected virtual ObjectQuery<AmpFilterInfo> GetAmpFiltersInternal()
         {
             return GetObjectQuery();
-        }    
+        }
 
 
         /// <summary>
@@ -116,7 +121,7 @@ namespace Kentico.AcceleratedMobilePages
         /// </summary>
         /// <param name="id">AmpFilterInfo ID</param>        
         protected virtual AmpFilterInfo GetAmpFilterInfoInternal(int id)
-        {	
+        {
             return GetInfoById(id);
         }
 
@@ -148,10 +153,9 @@ namespace Kentico.AcceleratedMobilePages
         protected virtual void DeleteAmpFilterInfoInternal(AmpFilterInfo infoObj)
         {
             DeleteInfo(infoObj);
-        }	
+        }
 
         #endregion
-
 
         #region "Internal methods - Advanced"
 
@@ -163,8 +167,8 @@ namespace Kentico.AcceleratedMobilePages
         protected virtual ObjectQuery<AmpFilterInfo> GetAmpFiltersInternal(int siteId)
         {
             return GetObjectQuery().OnSite(siteId);
-        }    
-        
-        #endregion		
+        }
+
+        #endregion
     }
 }

@@ -1,24 +1,22 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
+
 using CMS;
 using CMS.DataEngine;
-using CMS.DocumentEngine;
 using CMS.Helpers;
-using CMS.Localization;
-using CMS.SiteProvider;
 using Kentico.AcceleratedMobilePages;
 
 [assembly: RegisterObjectType(typeof(AmpFilterInfo), AmpFilterInfo.OBJECT_TYPE)]
-    
+
 namespace Kentico.AcceleratedMobilePages
 {
     /// <summary>
     /// AmpFilterInfo data container class.
     /// </summary>
-	[Serializable]
-    public class AmpFilterInfo : AbstractInfo<AmpFilterInfo>
+    [Serializable]
+    public partial class AmpFilterInfo : AbstractInfo<AmpFilterInfo>
     {
         #region "Type information"
 
@@ -33,37 +31,19 @@ namespace Kentico.AcceleratedMobilePages
         /// </summary>
         public static ObjectTypeInfo TYPEINFO = new ObjectTypeInfo(typeof(AmpFilterInfoProvider), OBJECT_TYPE, "AcceleratedMobilePages.AmpFilter", "AmpFilterID", "AmpFilterLastModified", "AmpFilterGuid", null, null, null, "SiteID", null, null)
         {
-			ModuleName = "AcceleratedMobilePages",
-			TouchCacheDependencies = true,
-            DependsOn = new List<ObjectDependency>
+            ModuleName = "Kentico.AcceleratedMobilePages",
+            TouchCacheDependencies = true,
+            DependsOn = new List<ObjectDependency>()
             {
-			    new ObjectDependency("SiteID", "cms.site", ObjectDependencyEnum.Required), 
-			    new ObjectDependency("StylesheetID", "cms.cssstylesheet", ObjectDependencyEnum.Required) 
-            }
+                new ObjectDependency("StylesheetID", "cms.cssstylesheet", ObjectDependencyEnum.Required),
+                new ObjectDependency("SiteID", "cms.site", ObjectDependencyEnum.Required),
+            },
         };
 
         #endregion
 
 
         #region "Properties"
-
-        /// <summary>
-        /// Gets or sets the display name of the AMP Page.
-        /// </summary>
-        protected override string ObjectDisplayName
-        {
-            get
-            {
-                // Get document name
-                TreeProvider tp = new TreeProvider();
-                TreeNode tn = tp.SelectSingleNode(new Guid(PageNodeGuid), LocalizationContext.CurrentCulture.CultureCode, SiteContext.CurrentSiteName);
-                return tn != null ? tn.DocumentName : base.ObjectDisplayName;
-            }
-            set
-            {
-                base.ObjectDisplayName = value;
-            }
-        }
 
         /// <summary>
         /// Amp filter ID
@@ -83,41 +63,24 @@ namespace Kentico.AcceleratedMobilePages
 
 
         /// <summary>
-        /// Site ID
+        /// Page node GUID
         /// </summary>
         [DatabaseField]
-        public virtual int SiteID
+        public virtual string PageNodeGUID
         {
             get
             {
-                return ValidationHelper.GetInteger(GetValue("SiteID"), 0);
+                return ValidationHelper.GetString(GetValue("PageNodeGUID"), String.Empty);
             }
             set
             {
-                SetValue("SiteID", value);
+                SetValue("PageNodeGUID", value);
             }
         }
 
 
         /// <summary>
-        /// Page node guid
-        /// </summary>
-        [DatabaseField]
-        public virtual string PageNodeGuid
-        {
-            get
-            {
-                return ValidationHelper.GetString(GetValue("PageNodeGuid"), String.Empty);
-            }
-            set
-            {
-                SetValue("PageNodeGuid", value);
-            }
-        }
-
-
-        /// <summary>
-        /// Use the default stylesheet, same for every AMP page.
+        /// Use default stylesheet
         /// </summary>
         [DatabaseField]
         public virtual bool UseDefaultStylesheet
@@ -146,6 +109,23 @@ namespace Kentico.AcceleratedMobilePages
             set
             {
                 SetValue("StylesheetID", value, 0);
+            }
+        }
+
+
+        /// <summary>
+        /// Site ID
+        /// </summary>
+        [DatabaseField]
+        public virtual int SiteID
+        {
+            get
+            {
+                return ValidationHelper.GetInteger(GetValue("SiteID"), 0);
+            }
+            set
+            {
+                SetValue("SiteID", value);
             }
         }
 
@@ -210,7 +190,7 @@ namespace Kentico.AcceleratedMobilePages
 
         #region "Constructors"
 
-		/// <summary>
+        /// <summary>
         /// Constructor for de-serialization.
         /// </summary>
         /// <param name="info">Serialization info</param>

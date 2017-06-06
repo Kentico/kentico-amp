@@ -146,6 +146,7 @@
     <Compile Include="AmpFilter.cs" />
     <Compile Include="AmpFilterEditExtender.cs" />
     <Compile Include="AmpFilterInfo.cs" />
+    <Compile Include="AmpFilterInfoPartial.cs" />
     <Compile Include="AmpFilterInfoProvider.cs" />
     <Compile Include="AmpFilterListExtender.cs" />
     <Compile Include="AmpFilterModule.cs" />

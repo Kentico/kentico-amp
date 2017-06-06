@@ -17,6 +17,8 @@
 # Add the DB objects
 !/CMS/App_Data/CIRepository/@global/**/Kentico.AcceleratedMobilePages*
 !/CMS/App_Data/CIRepository/@global/**/Kentico.AcceleratedMobilePages*/*.*
+!/CMS/App_Data/CIRepository/@global/**/AcceleratedMobilePages*
+!/CMS/App_Data/CIRepository/@global/**/AcceleratedMobilePages*/*.*
 !/CMS/App_Data/CIRepository/@global/**/ampfilter*
 !/CMS/App_Data/CIRepository/@global/**/ampfilter*/*.*
 

@@ -10,7 +10,6 @@ using Kentico.AcceleratedMobilePages;
 
 [SaveAction(0)]
 [UIElement(ModuleName.CONTENT, "Properties.AmpFilter")]
-
 public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPage
 {
     /// <summary>
@@ -46,7 +45,7 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
     /// <param name="sender">Sender object</param>
     /// <param name="e">Event arguments</param>
     protected void Page_Load(object sender, EventArgs e)
-    {      
+    {
         EditedObject = Node;
 
         // Check modify permissions
@@ -58,10 +57,11 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
             CurrentMaster.HeaderActions.Enabled = false;
         }
 
-        if ((Node != null) && !URLHelper.IsPostback())
+        if (Node != null && !URLHelper.IsPostback())
         {
             ReloadData();
-        } else
+        }
+        else
         {
             ShowControls(chkEnableAmpFilter.Checked);
         }
@@ -76,8 +76,8 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
     protected void chkDefaultCss_OnCheckedChanged(object sender, EventArgs e)
     {
         bool useDefaultChecked = chkDefaultCss.Checked;
-        selectStyleSheet.Visible = (!useDefaultChecked);
-        labelSelectCss.Visible = (!useDefaultChecked);
+        selectStyleSheet.Visible = !useDefaultChecked;
+        labelSelectCss.Visible = !useDefaultChecked;
         if (useDefaultChecked)
         {
             selectStyleSheet.Value = 0;
@@ -99,7 +99,7 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
     /// Show or hide controls.
     /// </summary>
     /// <param name="visibility">visible or not</param>
-    private void ShowControls(bool visibility=true)
+    private void ShowControls(bool visibility = true)
     {
         chkDefaultCss.Visible = visibility;
         LabelDefaultCss.Visible = visibility;
@@ -108,7 +108,8 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
             bool useDefaultChecked = chkDefaultCss.Checked;
             selectStyleSheet.Visible = !useDefaultChecked;
             labelSelectCss.Visible = !useDefaultChecked;
-        } else
+        }
+        else
         {
             selectStyleSheet.Visible = false;
             labelSelectCss.Visible = false;
@@ -133,7 +134,7 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
     {
         // Sets the checkbox checked if AMP filter is enabled for current node GUID
         ObjectQuery<AmpFilterInfo> q = GetAmpFilterInfoForGuid(Node.NodeGUID.ToString());
-        chkEnableAmpFilter.Checked = (q.Count != 0);
+        chkEnableAmpFilter.Checked = q.Count != 0;
 
         // Set controls
         if (q.Count != 0)
@@ -144,7 +145,8 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
             bool useDefaultChecked = chkDefaultCss.Checked;
             selectStyleSheet.Visible = !useDefaultChecked;
             labelSelectCss.Visible = !useDefaultChecked;
-        } else
+        }
+        else
         {
             ShowControls(false);
             chkDefaultCss.Checked = true;
@@ -169,25 +171,27 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
             if (chkEnableAmpFilter.Checked)
             {
                 AmpFilterInfo ampInfo;
-                
+
                 // First check if any record exists for this page
                 if (q.Count == 0)
                 {
                     // Insert new record to AmpFilterInfo table
                     ampInfo = new AmpFilterInfo();
-                } else
+                }
+                else
                 {
                     // Update existing record
                     ampInfo = q.FirstObject;
                 }
 
                 // Update object properties
-                ampInfo.PageNodeGuid = nodeGuid;
+                ampInfo.PageNodeGUID = nodeGuid;
                 ampInfo.SiteID = SiteContext.CurrentSiteID;
                 ampInfo.UseDefaultStylesheet = chkDefaultCss.Checked;
                 ampInfo.StylesheetID = ValidationHelper.GetInteger(selectStyleSheet.Value, 0);
                 AmpFilterInfoProvider.SetAmpFilterInfo(ampInfo);
-            } else
+            }
+            else
             {
                 // First check if any record exists for this page
                 if (q.Count != 0)
