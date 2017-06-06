@@ -103,37 +103,36 @@ Script URL settings solves the situation, when AMP releases new version of AMP r
 
 * AMP Filter works best with simple pages. If a page contains only regular HTML without interactive elements (except for `<img>`, `<video>`, `<audio>`, `<iframe>`, `<form>` elements) AMP Filter will transform the page to AMP format.
 
-## Known Issues
-
-* AMP Filter can only be enabled the for a single page at a time. https://github.com/Kentico/kentico-amp/issues/1
-
-## Contributing
+## Developing the module and contributing
  1. Read the [contribution guidelines](https://github.com/Kentico/kentico-amp/blob/master/CONTRIBUTING.md)
  2. Remove `<ObjectType>cms.settingskey</ObjectType>` from the `CMS\App_Data\CIRepository\repository.config`
- 2. Enable the [continuous integration](https://docs.kentico.com/display/K9/Setting+up+continuous+integration) module
- 3. Serialize all objects to disk
- 4. Open a command prompt
- 5. Navigate to the root of the project (where the .sln file is)
- 6. Fork this repo
- 7. Init a git repo and fetch the web part
+ 3. Enable the [continuous integration](https://docs.kentico.com/display/K9/Setting+up+continuous+integration) module
+ 4. Serialize all objects to disk
+ 5. Open a command prompt
+ 6. Navigate to the root of the project (where the .sln file is)
+ 7. Fork this repo
+ 8. Init a git repo and fetch the web part
   
          git init
-         git remote add origin https://github.com/owner/repo.git
+         git remote add origin https://github.com/OWNER/kentico-amp.git
          git fetch
          git checkout origin/master -ft
 
- 8. Restore DB data
+ 9. Restore DB data
   
          Kentico\CMS\bin\ContinuousIntegration.exe -r
-
- 9. Make changes
- 10. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
+ 10. Open the web project in Visual Studio
+ 11. Add `AcceleratedMobilePages\AcceleratedMobilePages.csproj` to the solution
+ 12. Add reference from CMSApp to AcceleratedMobilePages.csproj
+ 13. Build the solution
+ 14. Make changes
+ 15. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
   
         git status
         git commit -a -m "Fixed XY"
         git push
 
- 11. Submit a pull request
+ 16. Submit a pull request
   
 ## Compatibility
 Tested with Kentico 10.0 (net46).
