@@ -125,14 +125,15 @@ Script URL settings solves the situation, when AMP releases new version of AMP r
  11. Add `AcceleratedMobilePages\AcceleratedMobilePages.csproj` to the solution
  12. Add reference from CMSApp to AcceleratedMobilePages.csproj
  13. Build the solution
- 14. Make changes
- 15. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
+ 14. [Resign all macros](https://docs.kentico.com/k10/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
+ 15. Make changes
+ 16. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
   
         git status
         git commit -a -m "Fixed XY"
         git push
 
- 16. Submit a pull request
+ 17. Submit a pull request
   
 ## Compatibility
 Tested with Kentico 10.0 (net46).
