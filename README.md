@@ -109,6 +109,7 @@ Script URL settings solves the situation, when AMP releases new version of AMP r
 
 ## Contributing
  1. Read the [contribution guidelines](https://github.com/Kentico/kentico-amp/blob/master/CONTRIBUTING.md)
+ 2. Remove `<ObjectType>cms.settingskey</ObjectType>` from the `CMS\App_Data\CIRepository\repository.config`
  2. Enable the [continuous integration](https://docs.kentico.com/display/K9/Setting+up+continuous+integration) module
  3. Serialize all objects to disk
  4. Open a command prompt
@@ -119,7 +120,7 @@ Script URL settings solves the situation, when AMP releases new version of AMP r
          git init
          git remote add origin https://github.com/owner/repo.git
          git fetch
-         git checkout -t origin/master
+         git checkout origin/master -ft
 
  8. Restore DB data
   
