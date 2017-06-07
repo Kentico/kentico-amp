@@ -77,7 +77,7 @@ Both types of settings depend directly on the AMP HTML specification and should 
 ## Responsibilities of the developer
 Even when using the AMP Filter there are still some things that need to be handled by the developer:
 
-* Write valid CSSs according to the [AMP specification](https://www.ampproject.org/docs/reference/spec#stylesheets)
+* Write valid CSSs according to the [AMP specification](https://www.ampproject.org/docs/reference/spec#stylesheets).
 * Follow the [AMP specification when](https://www.ampproject.org/docs/reference/spec#svg) using SVG tags (AMP Filter does not affect SVG tags at all).
 * Use only white-listed font providers via `<link>` tag or use other fonts using `@font-face` CSS rule.
 * Explicitly state the size for every image (height and width attribute).
