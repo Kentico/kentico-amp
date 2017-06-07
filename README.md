@@ -1,11 +1,12 @@
+[![NuGet](https://img.shields.io/nuget/v/Kentico.AcceleratedMobilePages.svg)](https://www.nuget.org/packages/Kentico.AcceleratedMobilePages/)
 # Accelerated Mobile Pages Module for Kentico
 
 Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k10/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
 
 ## Usage
 
-### Installation  
-
+### Installation
+1. Install the NuGet package [`Kentico.AcceleratedMobilePages`](https://www.nuget.org/packages/Kentico.AcceleratedMobilePages/)
 
 ### Enabling the AMP module
 
