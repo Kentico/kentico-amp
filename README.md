@@ -17,13 +17,13 @@ To enable AMP Filter on a site:
 4. Go to Sites -> Edit site -> Domain aliases
 5. Create a new domain alias corresponding with AMP domain name specified earlier
 
-### Activating AMP filter for a specific page
+### Activating AMP Filter for a specific page
 
 There are two options how to do it:
 
 * In Accelerated Mobile Pages application, add pages by selecting them from the site content tree.
 
-* In Pages application, by selecting a particular page from the content tree, navigating to Properties -> AMP filter, and then selecting "Enable AMP for this page".
+* In Pages application, by selecting a particular page from the content tree, navigating to Properties -> AMP Filter, and then selecting "Enable AMP for this page".
 
 ### Setting up CSSs
 
@@ -38,55 +38,52 @@ There are several ways of including cascading style sheets into an AMP page:
 ### Further customization of AMP pages
 The AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, therefore they can't be automatically injected or replaced in the page's source code. 
 
-The the macro `{% AmpFilter.IsAmpPage() %}` can be used to find out whether the AMP filter is enabled and active on the current page. This is useful for showing and hidings different parts of a web page. To do that, use the macro as a visibility condition of a web part.
+The the macro `{% AmpFilter.IsAmpPage() %}` can be used to find out whether the AMP Filter is enabled and active on the current page. This is useful for showing and hidings different parts of a web page. To do that, use the macro as a visibility condition of a web part.
 
 #### Advanced components
 Some advanced components such as social media embed, advertisement, analytics, video, audio require a [script to be included](https://www.ampproject.org/docs/reference/components) in the head element. To do that, use the Head HTML Code web part.
 
-## How AMP filter works
+## How the AMP Filter works
 
-After AMP Filter is triggered on a specific page, which has the AMP Filter enabled:
+For pages that have the AMP Filter enabled:
 
-* If the page is accessed from non-AMP domain
+* If the page is accessed from a non-AMP domain
+  * AMP Filter will insert an `amphtml` link to the head tag of the page (this allows discovery of AMP-enabled pages)
 
-  * AMP Filter will just insert the amphtml link to the head tag of the page (it serves as an information, that this particular page has also an AMP version)
-
-* If the page is accessed from AMP domain, AMP Filter
-
-  * Removes restricted elements, attributes and attributes’ values
+* If the page is accessed from an AMP domain, the AMP Filter
+  * Removes restricted elements, attributes and their values
   * Replaces regular tags by their AMP HTML equivalents (these 5 tags: img, video, audio, iframe, form)
-  * Inserts compulsory AMP markup required by AMP standard (such as AMP runtime script, boilerplate code…)
-  * Inserts the stylesheet (as mentioned above, it depends on the settings of particular AMP page - either it is default AMP stylesheet, specific AMP stylesheet or regular stylesheet)
+  * Inserts compulsory AMP markup required by the AMP standard (such as the AMP runtime script, boilerplate code…)
+  * Injects a stylesheet as described above
 
 ### Transformation of HTML to AMP HTML
+This transformation is done via the HtmlAgilityPack library. It creates a DOM structure and the AMP Filter removes and replaces the elements according to the [AMP HTML specification](https://www.ampproject.org/docs/reference/spec).
 
-This transformation is performed using HtmlAgilityPack library. It creates the DOM structure and AMP Filter removes and replaces the elements according to the [AMP HTML specification](https://www.ampproject.org/docs/reference/spec).
-
-AMP filter performs few corrections using regular expressions. The reason is, that these corrections were not possible using parser from HtmlAgilityPack library.
+Some advanced replacements (which were not possible to implement using the HtmlAgilityPack) are done by regular expressions .
 
 ### Cascading style sheets
-
-AMP Filter does not transform CSS stylesheets in any way. The developer must ensure the stylesheet complies with the [AMP HTML specification - stylesheet restrictions](https://www.ampproject.org/docs/reference/spec#stylesheets).
+The AMP Filter does not transform cascading stylesheets in any way. The developer must ensure the stylesheet complies with the [AMP HTML specification - stylesheet restrictions](https://www.ampproject.org/docs/reference/spec#stylesheets).
  
 
 ### Global settings
+AMP Filter has two types of global settings:
 
-AMP Filter has two types of global settings. Font providers settings and script URL settings for five different AMP HTML elements. Both types of settings depend directly on the AMP HTML specification and should be changed only according to the AMP specification.
+ - Font providers settings - a white-list of font providers of custom fonts available for usage via the `<link>` tag. (Other fonts can be used via the `@font-face` CSS rule.)
+ - Script URL settings for five different AMP HTML elements. This allows loading of specific (or latest) versions of the runtime scripts.
 
-Font providers is a list of white-listed font providers of custom fonts available for use via <link> tag. Other fonts can be used via @font-face CSS rule.
-
-Script URL settings solves the situation, when AMP releases new version of AMP runtime script or other scripts (the version is a part of the URL).
+Both types of settings depend directly on the AMP HTML specification and should be changed only according to the AMP specification.
 
 ## Responsibilities of the developer
+Even when using the AMP Filter there are still some things that need to be handled by the developer:
 
-* Write valid CSS stylesheets according to the [AMP specification](https://www.ampproject.org/docs/reference/spec#stylesheets)
+* Write valid CSSs according to the [AMP specification](https://www.ampproject.org/docs/reference/spec#stylesheets)
 * Follow the [AMP specificationwhen](https://www.ampproject.org/docs/reference/spec#svg) using SVG tags (AMP Filter does not affect SVG tags at all)
-* Use only white-listed font providers via <link> tag or use other fonts using @font-face CSS rule
+* Use only white-listed font providers via `<link>` tag or use other fonts using `@font-face` CSS rule
 * Explicitly state the size for every image (height and width attribute)
 * In case of sites with complex styling, the stylesheets need to be reduced not to exceed 50kB in total.
 * If a page contains scripts, social media embeds, advertisements, or other interactive elements, the elements need to be replaced with [AMP extended components](https://www.ampproject.org/docs/reference/components).
 
-## Scenarios covered by AMP filter
+## Scenarios covered by AMP Filter
 
 * In case of simple sites with CSSs smaller than 50kB (that don't break any [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
 
@@ -115,6 +112,7 @@ Script URL settings solves the situation, when AMP releases new version of AMP r
  12. Add reference from CMSApp to AcceleratedMobilePages.csproj
  13. Build the solution
  14. [Resign all macros](https://docs.kentico.com/k10/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
+ 15. Optional: Assign the module to one or more sites
  15. Make changes
  16. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
   
