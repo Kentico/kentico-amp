@@ -116,9 +116,9 @@ Even when using the AMP Filter there are still some things that need to be handl
  15. Make changes
  16. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
   
-        git status
-        git commit -a -m "Fixed XY"
-        git push
+         git status
+         git commit -a -m "Fixed XY"
+         git push
 
  17. Submit a pull request
   
