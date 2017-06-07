@@ -23,36 +23,25 @@ There are two options how to do it:
 
 * In Accelerated Mobile Pages application, add pages by selecting them from the site content tree.
 
-*	In Pages application, by selecting a particular page from the content tree, navigating to Properties -> AMP filter, and then selecting "Enable AMP for this page".
+* In Pages application, by selecting a particular page from the content tree, navigating to Properties -> AMP filter, and then selecting "Enable AMP for this page".
 
 ### Setting up CSSs
 
-There are several options how to include cascading style sheets into an AMP page:
+There are several ways of including cascading style sheets into an AMP page:
 
 *	Set a default CSS stylesheet for the whole site (in Settings -> Content -> Output filter -> AMP Filter).
 
-*	Set a CSS stylesheet for every AMP page separately by unchecking "Use default stylesheet" in properties of a page.
+*	Set a CSS stylesheet for every AMP page separately (Pages -> Edit -> Properties -> AMP Filter -> uncheck "Use default stylesheet" and select the desired stylesheet)
 
-*	If none of the previous options is set, the AMP Filter will use the regular CSS stylesheet assigned to the page (either the site's default stylesheet, or the page-specifc one). This option is not recommended as the stylesheet could be bigger than 50kB (e.g. if it contains styles for the whole website).
+*	If none of the previous options is set, the AMP Filter will use the regular CSS stylesheet assigned to the page (either the site's default stylesheet or the page-specifc one). This option is not recommended as the stylesheet could be bigger than 50kB (e.g. if it contains styles for the whole website).
 
-* All the options above can be combined throughout the website.
+### Further customization of AMP pages
+The AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, therefore they can't be automatically injected or replaced in the page's source code. 
 
-### Customizing the content of AMP pages
+The the macro `{% AmpFilter.IsAmpPage() %}` can be used to find out whether the AMP filter is enabled and active on the current page. This is useful for showing and hidings different parts of a web page. To do that, use the macro as a visibility condition of a web part.
 
-The AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, therefore they can't be inserted automatically into the page's source code. This is how to use extended AMP components and at the same time a method how to use regular HTML for customization of an AMP page:
- 
-* Add new web part to the page: Static HTML
-* Set this macro as the visibility condition for the web part:
-
-`{% StartsWith(Settings.AMPFilterDomainAlias,System.Domain) %}`
-
-(this macro ensures that web part will be visible only on pages accessed from AMP domain)
-
-* Place any HTML code into the web part - for example some extended AMP component such as social media embed, advertisement, analytics, video, audio, …
-* If an extended AMP component has been used, it needs to be included in the head element (required by AMP standard):
-  * Add a new web part to the page: Head HTML Code
-  * Set the previous macro as enable condition
-  * For every extended AMP component, insert the import script into the head webpart
+#### Advanced components
+Some advanced components such as social media embed, advertisement, analytics, video, audio require a [script to be included](https://www.ampproject.org/docs/reference/components) in the head element. To do that, use the Head HTML Code web part.
 
 ## How AMP filter works
 
