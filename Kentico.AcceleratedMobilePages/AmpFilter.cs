@@ -67,7 +67,7 @@ namespace Kentico.AcceleratedMobilePages
         /// <param name="finalHtml">Final HTML string</param>
         private string AppendAmpHtmlLink(string finalHtml)
         {
-            string ampLink = CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP +
+            string ampLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
                              SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterDomainAlias") +
                              DocumentContext.CurrentAliasPath +
                              SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
@@ -234,7 +234,7 @@ namespace Kentico.AcceleratedMobilePages
             string styles = GetStylesheetText();
 
             // Create a link pointing to the regular HTML version of the page
-            string canonicalLink = CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP +
+            string canonicalLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
                                    SiteContext.CurrentSite.DomainName + DocumentContext.CurrentAliasPath +
                                    SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
 
