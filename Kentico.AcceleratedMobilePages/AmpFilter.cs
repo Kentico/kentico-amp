@@ -69,7 +69,7 @@ namespace Kentico.AcceleratedMobilePages
         {
             string ampLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
                              SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterDomainAlias") +
-                             DocumentContext.CurrentAliasPath +
+                             (DocumentContext.CurrentPageInfo.DocumentUrlPath ?? DocumentContext.CurrentAliasPath) +
                              SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
             string metaTag = String.Format(Constants.AMP_AMP_HTML_LINK, ampLink) + Constants.NEW_LINE;
             // Insert meta tag
@@ -235,7 +235,7 @@ namespace Kentico.AcceleratedMobilePages
 
             // Create a link pointing to the regular HTML version of the page
             string canonicalLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
-                                   SiteContext.CurrentSite.DomainName + DocumentContext.CurrentAliasPath +
+                                   SiteContext.CurrentSite.DomainName + (DocumentContext.CurrentPageInfo.DocumentUrlPath ?? DocumentContext.CurrentAliasPath) +
                                    SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
 
             // Extend the <head> tag with the compulsory markup and CSS styles
