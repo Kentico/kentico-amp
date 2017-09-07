@@ -3,6 +3,8 @@
 
 Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k10/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
 
+:bulb: Read [how we implemented AMP](https://devnet.kentico.com/articles/google-amping-the-kentico-advantage-site) on [Kentico Advantage website](http://amp.advantage.kentico.com/).
+
 ## Usage
 
 ### Installation
