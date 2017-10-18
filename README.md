@@ -14,7 +14,7 @@ Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS 
 
 To enable AMP Filter on a site:
 
-1. Go to Settings -> Content -> Output filter -> AMP Filter
+1. Go to Settings -> System -> Output filter -> AMP Filter
 2. Check "Enable AMP Filter"
 3. Set an AMP domain name (e.g.: `amp.domain.tld` if the web is hosted on www.domain.tld).
 4. Go to Sites -> Edit site -> Domain aliases
@@ -32,7 +32,7 @@ There are two options for how to activate an AMP Filter for a specific page:
 
 There are several ways of including cascading style sheets into an AMP page:
 
-*	Set a default CSS stylesheet for the whole site (in Settings -> Content -> Output filter -> AMP Filter).
+*	Set a default CSS stylesheet for the whole site (in Settings -> System -> Output filter -> AMP Filter).
 
 *	Set a CSS stylesheet for every AMP page separately (Pages -> Edit -> Properties -> AMP Filter -> uncheck "Use default stylesheet" and select the desired stylesheet)
 
