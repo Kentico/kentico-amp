@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <grid>
     <actions>
-      <action name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow" />
+      <action name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow" confirmation="$General.ConfirmEdit$" />
       <action name="#delete" caption="$General.Delete$" fonticonclass="icon-bin" fonticonstyle="critical" confirmation="$General.ConfirmDelete$" />
     </actions>
     <columns>
@@ -9,6 +9,6 @@
       <column source="PageNodeGuid" caption="AcceleratedMobilePages.GridPath" externalsourcename="pagenamepath"/>
       <column source="StylesheetID" caption="AcceleratedMobilePages.GridCssStylesheet" externalsourcename="pagecss"/>
       <column source="UseDefaultStylesheet" caption="AcceleratedMobilePages.GridUseDefault" externalsourcename="usedefault"/>
-      <column source="AmpFilterLastModified" caption="AcceleratedMobilePages.GridLastModified"/>
+      <column source="AmpFilterLastModified" caption="AcceleratedMobilePages.GridLastModified" externalsourcename="usedefault"/>
     </columns>
 </grid>
