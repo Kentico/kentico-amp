@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cms.resourcelibrary>
+  <ResourceLibraryPath>~\bin\HtmlAgilityPack.dll</ResourceLibraryPath>
+  <ResourceLibraryResourceID>
+    <CodeName>Kentico.AcceleratedMobilePages</CodeName>
+    <GUID>027e9be4-bfa0-4a97-b77a-47b7f22f2725</GUID>
+    <ObjectType>cms.resource</ObjectType>
+  </ResourceLibraryResourceID>
+</cms.resourcelibrary>
