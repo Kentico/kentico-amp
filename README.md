@@ -94,8 +94,8 @@ Even when using the AMP Filter there are still some things that need to be handl
 
 ## Developing the module and contributing
  1. Read the [contribution guidelines](https://github.com/Kentico/kentico-amp/blob/master/CONTRIBUTING.md)
- 2. Remove `<ObjectType>cms.settingskey</ObjectType>` from the `CMS\App_Data\CIRepository\repository.config`
- 3. Enable the [continuous integration](https://docs.kentico.com/display/k11/Setting+up+continuous+integration) module
+ 2. Enable the [continuous integration](https://docs.kentico.com/display/k11/Setting+up+continuous+integration) module
+ 3. Remove `<ObjectType>cms.settingskey</ObjectType>` from the `CMS\App_Data\CIRepository\repository.config`
  4. Serialize all objects to disk
  5. Open a command prompt
  6. Navigate to the root of the project (where the .sln file is)
