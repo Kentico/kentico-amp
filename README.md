@@ -126,7 +126,7 @@ Even when using the AMP Filter there are still some things that need to be handl
  17. Submit a pull request
   
 ## Compatibility
-Tested with Kentico 10.0 (net46).
+Tested with Kentico 11.0 (net46).
 
 ## [Questions & Support](https://github.com/Kentico/Home/blob/master/README.md)
 
