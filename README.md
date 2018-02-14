@@ -1,7 +1,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Kentico.AcceleratedMobilePages.svg)](https://www.nuget.org/packages/Kentico.AcceleratedMobilePages/)
 # Accelerated Mobile Pages Module for Kentico
 
-Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k10/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
+Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k11/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
 
 :bulb: Read [how we implemented AMP](https://devnet.kentico.com/articles/google-amping-the-kentico-advantage-site) on [Kentico Advantage website](http://amp.advantage.kentico.com/).
 
@@ -95,7 +95,7 @@ Even when using the AMP Filter there are still some things that need to be handl
 ## Developing the module and contributing
  1. Read the [contribution guidelines](https://github.com/Kentico/kentico-amp/blob/master/CONTRIBUTING.md)
  2. Remove `<ObjectType>cms.settingskey</ObjectType>` from the `CMS\App_Data\CIRepository\repository.config`
- 3. Enable the [continuous integration](https://docs.kentico.com/display/K9/Setting+up+continuous+integration) module
+ 3. Enable the [continuous integration](https://docs.kentico.com/display/k11/Setting+up+continuous+integration) module
  4. Serialize all objects to disk
  5. Open a command prompt
  6. Navigate to the root of the project (where the .sln file is)
@@ -114,7 +114,7 @@ Even when using the AMP Filter there are still some things that need to be handl
  11. Add `AcceleratedMobilePages\AcceleratedMobilePages.csproj` to the solution
  12. Add reference from CMSApp to AcceleratedMobilePages.csproj
  13. Build the solution
- 14. [Resign all macros](https://docs.kentico.com/k10/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
+ 14. [Resign all macros](https://docs.kentico.com/k11/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
  15. Optional: Assign the module to one or more sites
  15. Make changes
  16. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
