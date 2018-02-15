@@ -71,6 +71,13 @@ namespace Kentico.AcceleratedMobilePages
             {
                 var metadata = e.Manifest.Metadata;
 
+                metadata.RequireLicenseAcceptance = true;
+                metadata.LicenseUrl = "https://github.com/Kentico/kentico-amp/blob/master/LICENSE";
+                metadata.IconUrl = "http://www.kentico.com/favicon.ico";
+                metadata.Copyright = "© 2018 Kentico Software";
+                metadata.Language = "en-US";
+                metadata.Tags = "kentico amp";
+
                 var dependencies = new List<ManifestDependency>()
                 {
                     new ManifestDependency() { Id = "HtmlAgilityPack", Version = "1.4.9.5" },
