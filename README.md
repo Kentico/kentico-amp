@@ -101,12 +101,16 @@ Even when using the AMP Filter there are still some things that need to be handl
  1. Navigate to the root of the project (where the .sln file is)
  1. Fork this repo
  1. Init a git repo and fetch the web part
-         git init
-         git remote add origin https://github.com/OWNER/kentico-amp.git
-         git fetch
-         git checkout origin/master -ft
+        
+        git init
+        git remote add origin https://github.com/OWNER/kentico-amp.git
+        git fetch
+        git checkout origin/master -ft
+
  1. Restore DB data
-         Kentico\CMS\bin\ContinuousIntegration.exe -r
+        
+        Kentico\CMS\bin\ContinuousIntegration.exe -r
+
  1. Open the web project in Visual Studio
  1. Add `Kentico.AcceleratedMobilePages\Kentico.AcceleratedMobilePages.csproj` to the solution
  1. Add reference from CMSApp to Kentico.AcceleratedMobilePages.csproj
@@ -115,9 +119,11 @@ Even when using the AMP Filter there are still some things that need to be handl
  1. Optional: Assign the module to one or more sites
  1. Make changes
  1. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
-         git status
-         git commit -a -m "Fix XY"
-         git push
+        
+        git status
+        git commit -a -m "Fix XY"
+        git push
+        
  1. Submit a pull request
   
 ## Compatibility
