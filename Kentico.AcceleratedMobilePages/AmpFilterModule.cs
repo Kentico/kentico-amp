@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using CMS;
 using CMS.Base;
 using CMS.DataEngine;
+using CMS.Modules;
 using CMS.OutputFilter;
+
 using Kentico.AcceleratedMobilePages;
+using NuGet;
 
 [assembly: RegisterModule(typeof(AmpFilterModule))]
 namespace Kentico.AcceleratedMobilePages
@@ -29,15 +34,18 @@ namespace Kentico.AcceleratedMobilePages
         {
             base.OnInit();
 
-            // Ensures that the an output filter instance is created on every request
-            RequestEvents.PostMapRequestHandler.Execute += PostMapRequestHandler_Execute;
-
             // Instantiates the AMP filter logic
             ampFilter = new AmpFilter();
+
+            // Ensures that the output filter instance is created on every request
+            RequestEvents.PostMapRequestHandler.Execute += PostMapRequestHandler_Execute;
+
+            // Update nuspec manifest on module package creation
+            ModulePackagingEvents.Instance.BuildNuSpecManifest.After += BuildNuSpecManifest_After;
         }
 
 
-		/// <summary>
+        /// <summary>
         /// Handler for PostMapRequest
         /// </summary>
         /// <param name="sender">Sender object</param>
@@ -49,6 +57,29 @@ namespace Kentico.AcceleratedMobilePages
 
             // Assigns a handler to the OutputFilterContext.CurrentFilter.OnAfterFiltering event
             OutputFilterContext.CurrentFilter.OnAfterFiltering += ampFilter.OnFilterActivated;
+        }
+
+
+        /// <summary>
+        /// Updates nuspec manifest
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">Event arguments</param>
+        private void BuildNuSpecManifest_After(object sender, BuildNuSpecManifestEventArgs e)
+        {
+            if (e.ResourceName.Equals("Kentico.AcceleratedMobilePages", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var metadata = e.Manifest.Metadata;
+
+                var dependencies = new List<ManifestDependency>()
+                {
+                    new ManifestDependency() { Id = "HtmlAgilityPack", Version = "1.4.9.5" },
+                    new ManifestDependency() { Id = "NuGet.Core", Version = "2.14.0" }
+                };
+
+                var manifestDependencySet = new ManifestDependencySet() { Dependencies = dependencies };
+                metadata.DependencySets = new List<ManifestDependencySet>() { manifestDependencySet };
+            }            
         }
     }
 }
