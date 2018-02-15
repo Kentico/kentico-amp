@@ -49,6 +49,7 @@ namespace Kentico.AcceleratedMobilePages.Publisher
                 metadata.RequireLicenseAcceptance = true;
                 metadata.LicenseUrl = "https://github.com/Kentico/kentico-amp/blob/master/LICENSE";
                 metadata.IconUrl = "http://www.kentico.com/favicon.ico";
+                metadata.ProjectUrl = "https://github.com/Kentico/kentico-amp";
                 metadata.Copyright = "© 2018 Kentico Software";
                 metadata.Language = "en-US";
                 metadata.Tags = "kentico amp";
