@@ -15,10 +15,10 @@ Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS 
 To enable AMP Filter on a site:
 
 1. Go to Settings -> System -> Output filter -> AMP Filter
-2. Check that "Enable AMP Filter" is on
-3. Set an AMP domain name (e.g.: `amp.domain.tld` if the web is hosted on www.domain.tld).
-4. Go to Sites -> Edit site -> Domain aliases
-5. Create a new domain alias corresponding with AMP domain name specified earlier
+1. Check that "Enable AMP Filter" is on
+1. Set an AMP domain name (e.g.: `amp.domain.tld` if the web is hosted on www.domain.tld).
+1. Go to Sites -> Edit site -> Domain aliases
+1. Create a new domain alias corresponding with AMP domain name specified earlier
 
 ### Activating AMP Filter for a specific page
 
