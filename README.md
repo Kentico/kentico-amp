@@ -111,8 +111,8 @@ Even when using the AMP Filter there are still some things that need to be handl
   
          Kentico\CMS\bin\ContinuousIntegration.exe -r
  10. Open the web project in Visual Studio
- 11. Add `AcceleratedMobilePages\AcceleratedMobilePages.csproj` to the solution
- 12. Add reference from CMSApp to AcceleratedMobilePages.csproj
+ 11. Add `Kentico.AcceleratedMobilePages\Kentico.AcceleratedMobilePages.csproj` to the solution
+ 12. Add reference from CMSApp to Kentico.AcceleratedMobilePages.csproj
  13. Build the solution
  14. [Resign all macros](https://docs.kentico.com/k11/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
  15. Optional: Assign the module to one or more sites
