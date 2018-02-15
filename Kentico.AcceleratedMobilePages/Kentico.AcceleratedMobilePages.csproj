@@ -134,7 +134,6 @@
   <ItemGroup>
     <Content Include="..\CMS\App_Data\CMSModules\Kentico.AcceleratedMobilePages\UI\Grids\AcceleratedMobilePages_AmpFilter\default.xml" />
     <Content Include="..\CMS\CMSModules\Kentico.AcceleratedMobilePages\Default.aspx" />
-    <Content Include="packages.AcceleratedMobilePages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmpFilter.cs" />
