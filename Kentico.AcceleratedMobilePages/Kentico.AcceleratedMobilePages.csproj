@@ -155,7 +155,7 @@
     <Compile Include="..\CMS\CMSModules\Kentico.AcceleratedMobilePages\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AcceleratedMobilePagesAssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\CMS\CMSResources\Kentico.AcceleratedMobilePages\Default.resx" />
