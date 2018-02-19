@@ -1,11 +1,14 @@
 ﻿using System;
+
 using CMS;
 using CMS.Base;
 using CMS.DataEngine;
 using CMS.OutputFilter;
+
 using Kentico.AcceleratedMobilePages;
 
 [assembly: RegisterModule(typeof(AmpFilterModule))]
+
 namespace Kentico.AcceleratedMobilePages
 {
     public class AmpFilterModule : Module
@@ -29,15 +32,15 @@ namespace Kentico.AcceleratedMobilePages
         {
             base.OnInit();
 
-            // Ensures that the an output filter instance is created on every request
-            RequestEvents.PostMapRequestHandler.Execute += PostMapRequestHandler_Execute;
-
             // Instantiates the AMP filter logic
             ampFilter = new AmpFilter();
+
+            // Ensures that the output filter instance is created on every request
+            RequestEvents.PostMapRequestHandler.Execute += PostMapRequestHandler_Execute;
         }
 
 
-		/// <summary>
+        /// <summary>
         /// Handler for PostMapRequest
         /// </summary>
         /// <param name="sender">Sender object</param>

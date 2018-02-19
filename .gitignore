@@ -14,6 +14,13 @@
 !/Kentico.AcceleratedMobilePages/**/*.csproj
 !/Kentico.AcceleratedMobilePages/**/*.config
 
+# Handle publisher of the module
+/Kentico.AcceleratedMobilePages.Publisher/bin
+/Kentico.AcceleratedMobilePages.Publisher/obj
+!/Kentico.AcceleratedMobilePages.Publisher/**/*.cs
+!/Kentico.AcceleratedMobilePages.Publisher/**/*.csproj
+!/Kentico.AcceleratedMobilePages.Publisher/**/*.config
+
 # Add the DB objects
 !/CMS/App_Data/CIRepository/@global/**/Kentico.AcceleratedMobilePages*
 !/CMS/App_Data/CIRepository/@global/**/Kentico.AcceleratedMobilePages*/*.*

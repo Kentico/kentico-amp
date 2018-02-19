@@ -1,17 +1,19 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+
 using CMS;
 
 [assembly: AssemblyDiscoverable]
+
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AcceleratedMobilePages")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Kentico Accelerated Mobile Pages")]
+[assembly: AssemblyDescription("Kentico Accelerated Mobile Pages")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Kentico software s.r.o.")]
 [assembly: AssemblyProduct("AcceleratedMobilePages")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright © 2018 Kentico software s.r.o.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +34,6 @@ using CMS;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("11.0.0.0")]
+[assembly: AssemblyFileVersion("11.0.0.0")]
+[assembly: AssemblyInformationalVersion("11.0.0")]

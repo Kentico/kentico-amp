@@ -1,7 +1,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Kentico.AcceleratedMobilePages.svg)](https://www.nuget.org/packages/Kentico.AcceleratedMobilePages/)
 # Accelerated Mobile Pages Module for Kentico
 
-Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k10/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
+Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k11/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
 
 :bulb: Read [how we implemented AMP](https://devnet.kentico.com/articles/google-amping-the-kentico-advantage-site) on [Kentico Advantage website](http://amp.advantage.kentico.com/).
 
@@ -15,10 +15,10 @@ Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS 
 To enable AMP Filter on a site:
 
 1. Go to Settings -> System -> Output filter -> AMP Filter
-2. Check "Enable AMP Filter"
-3. Set an AMP domain name (e.g.: `amp.domain.tld` if the web is hosted on www.domain.tld).
-4. Go to Sites -> Edit site -> Domain aliases
-5. Create a new domain alias corresponding with AMP domain name specified earlier
+1. Check that "Enable AMP Filter" is on
+1. Set an AMP domain name (e.g.: `amp.domain.tld` if the web is hosted on www.domain.tld).
+1. Go to Sites -> Edit site -> Domain aliases
+1. Create a new domain alias corresponding with AMP domain name specified earlier
 
 ### Activating AMP Filter for a specific page
 
@@ -94,39 +94,42 @@ Even when using the AMP Filter there are still some things that need to be handl
 
 ## Developing the module and contributing
  1. Read the [contribution guidelines](https://github.com/Kentico/kentico-amp/blob/master/CONTRIBUTING.md)
- 2. Remove `<ObjectType>cms.settingskey</ObjectType>` from the `CMS\App_Data\CIRepository\repository.config`
- 3. Enable the [continuous integration](https://docs.kentico.com/display/K9/Setting+up+continuous+integration) module
- 4. Serialize all objects to disk
- 5. Open a command prompt
- 6. Navigate to the root of the project (where the .sln file is)
- 7. Fork this repo
- 8. Init a git repo and fetch the web part
-  
-         git init
-         git remote add origin https://github.com/OWNER/kentico-amp.git
-         git fetch
-         git checkout origin/master -ft
+ 1. Enable the [continuous integration](https://docs.kentico.com/display/k11/Setting+up+continuous+integration) module
+ 1. Remove `<ObjectType>cms.settingskey</ObjectType>` from the `CMS\App_Data\CIRepository\repository.config`
+ 1. Serialize all objects to disk
+ 1. Open a command prompt
+ 1. Navigate to the root of the project (where the .sln file is)
+ 1. Fork this repo
+ 1. Init a git repo and fetch the web part
+        
+        git init
+        git remote add origin https://github.com/OWNER/kentico-amp.git
+        git fetch
+        git checkout origin/master -ft
 
- 9. Restore DB data
-  
-         Kentico\CMS\bin\ContinuousIntegration.exe -r
- 10. Open the web project in Visual Studio
- 11. Add `AcceleratedMobilePages\AcceleratedMobilePages.csproj` to the solution
- 12. Add reference from CMSApp to AcceleratedMobilePages.csproj
- 13. Build the solution
- 14. [Resign all macros](https://docs.kentico.com/k10/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
- 15. Optional: Assign the module to one or more sites
- 15. Make changes
- 16. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
-  
-         git status
-         git commit -a -m "Fixed XY"
-         git push
+ 1. Restore DB data
+        
+        Kentico\CMS\bin\ContinuousIntegration.exe -r
 
- 17. Submit a pull request
+ 1. Open the web project in Visual Studio
+ 1. Add `Kentico.AcceleratedMobilePages\Kentico.AcceleratedMobilePages.csproj` to the solution
+ 1. Add `Kentico.AcceleratedMobilePages.Publisher\Kentico.AcceleratedMobilePages.Publisher.csproj` to the solution
+ 1. Add reference from CMSApp to Kentico.AcceleratedMobilePages.csproj
+ 1. Add reference from CMSApp to Kentico.AcceleratedMobilePages.Publisher.csproj
+ 1. Build the solution
+ 1. [Resign all macros](https://docs.kentico.com/k11/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
+ 1. Optional: Assign the module to one or more sites
+ 1. Make changes
+ 1. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
+        
+        git status
+        git commit -a -m "Fix XY"
+        git push
+        
+ 1. Submit a pull request
   
 ## Compatibility
-Tested with Kentico 10.0 (net46).
+Tested with Kentico 11.0 (net46).
 
 ## [Questions & Support](https://github.com/Kentico/Home/blob/master/README.md)
 
