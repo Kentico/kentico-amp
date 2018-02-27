@@ -2,7 +2,6 @@
 using CMS.DocumentEngine;
 using CMS.Helpers;
 using CMS.PortalEngine;
-using CMS.SiteProvider;
 
 namespace Kentico.AcceleratedMobilePages
 {
@@ -19,7 +18,7 @@ namespace Kentico.AcceleratedMobilePages
         public static int GetFilterState()
         {
             // Check if AMP filter is enabled in site settings
-            if (!SettingsKeyInfoProvider.GetBoolValue(SiteContext.CurrentSiteName + ".AMPFilterEnabled"))
+            if (!Settings.AmpFilterEnabled)
             {
                 return Constants.DISABLED;
             }
@@ -39,7 +38,7 @@ namespace Kentico.AcceleratedMobilePages
 
             // Check if the domain from which we are accessing is set for AMP filter
             string currentDomain = CMSHttpContext.Current.Request.Url.IsDefaultPort ? CMSHttpContext.Current.Request.Url.Host : CMSHttpContext.Current.Request.Url.Host + ":" + CMSHttpContext.Current.Request.Url.Port;
-            string ampDomain = SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterDomainAlias");
+            string ampDomain = Settings.AmpFilterDomainAlias;
             if (!currentDomain.Equals(ampDomain))
             {
                 return Constants.ENABLED_AND_INACTIVE;

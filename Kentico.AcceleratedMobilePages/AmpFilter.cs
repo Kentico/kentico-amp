@@ -68,9 +68,9 @@ namespace Kentico.AcceleratedMobilePages
         private string AppendAmpHtmlLink(string finalHtml)
         {
             string ampLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
-                             SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterDomainAlias") +
+                             Settings.AmpFilterDomainAlias +
                              (DocumentContext.CurrentPageInfo.DocumentUrlPath ?? DocumentContext.CurrentAliasPath) +
-                             SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
+                             Settings.CmsFriendlyUrlExtension;
             string metaTag = String.Format(Constants.AMP_AMP_HTML_LINK, ampLink) + Constants.NEW_LINE;
             // Insert meta tag
             finalHtml = Regex.Replace(finalHtml, "</head>", metaTag + "</head>");
@@ -129,7 +129,7 @@ namespace Kentico.AcceleratedMobilePages
         private void ResolveComplexElements(HtmlDocument doc)
         {
             // Script tags source URLs from settings
-            string ampCustomForm = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_FORM, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterFormScriptUrl"));
+            string ampCustomForm = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_FORM, Settings.AmpFilterFormScriptUrl);
 
             // Process <form> tags
             HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes(Constants.XPATH_FORM);
@@ -162,7 +162,7 @@ namespace Kentico.AcceleratedMobilePages
             nodes = doc.DocumentNode.SelectNodes(Constants.XPATH_FONT_STYLESHEET);
 
             // List of font providers from settings
-            string[] fontProviders = SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AmpFilterFontProviders").Split('\n');
+            var fontProviders = Settings.AmpFilterFontProviders;
             if (nodes != null)
             {
                 foreach (HtmlNode node in nodes)
@@ -197,17 +197,17 @@ namespace Kentico.AcceleratedMobilePages
             ReplaceElement(doc, Constants.XPATH_IMG, Constants.XPATH_IMG_REPLACEMENT);
             if (ReplaceElement(doc, Constants.XPATH_VIDEO, Constants.XPATH_VIDEO_REPLACEMENT))
             {
-                string ampCustomVideo = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_VIDEO, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterVideoScriptUrl"));
+                string ampCustomVideo = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_VIDEO, Settings.AmpFilterVideoScriptUrl);
                 customElementsScripts += ampCustomVideo + Constants.NEW_LINE;
             }
             if (ReplaceElement(doc, Constants.XPATH_AUDIO, Constants.XPATH_AUDIO_REPLACEMENT))
             {
-                string ampCustomAudio = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_AUDIO, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterAudioScriptUrl"));
+                string ampCustomAudio = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_AUDIO, Settings.AmpFilterAudioScriptUrl);
                 customElementsScripts += ampCustomAudio + Constants.NEW_LINE;
             }
             if (ReplaceElement(doc, Constants.XPATH_IFRAME, Constants.XPATH_IFRAME_REPLACEMENT))
             {
-                string ampCustomIframe = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_IFRAME, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterIframeScriptUrl"));
+                string ampCustomIframe = String.Format(Constants.AMP_CUSTOM_ELEMENT_AMP_IFRAME, Settings.AmpFilterIframeScriptUrl);
                 customElementsScripts += ampCustomIframe + Constants.NEW_LINE;
             }
         }
@@ -228,7 +228,7 @@ namespace Kentico.AcceleratedMobilePages
             }
 
             // Script tags source URLs from settings
-            string ampRuntimeScript = String.Format(Constants.AMP_SCRIPT, SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterRuntimeScriptUrl"));
+            string ampRuntimeScript = String.Format(Constants.AMP_SCRIPT, Settings.AmpFilterRuntimeScriptUrl);
 
             // CSS stylesheet to be inlined to finalHtml
             string styles = GetStylesheetText();
@@ -236,7 +236,7 @@ namespace Kentico.AcceleratedMobilePages
             // Create a link pointing to the regular HTML version of the page
             string canonicalLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
                                    SiteContext.CurrentSite.DomainName + (DocumentContext.CurrentPageInfo.DocumentUrlPath ?? DocumentContext.CurrentAliasPath) +
-                                   SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
+                                   Settings.CmsFriendlyUrlExtension;
 
             // Extend the <head> tag with the compulsory markup and CSS styles
             headTag +=  Constants.NEW_LINE +
@@ -269,7 +269,7 @@ namespace Kentico.AcceleratedMobilePages
             if (q.FirstObject.UseDefaultStylesheet)
             {
                 // Get the ID of default AMP CSS
-                string defaultID = SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".AMPFilterDefaultCSS");
+                string defaultID = Settings.AmpFilterDefaultCSS;
                 var cssID = ValidationHelper.GetInteger(defaultID, 0);
 
                 // Default AMP CSS is not set, using ordinary CSS of current page
