@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <cms.resource>
   <ResourceAuthor>Kentico</ResourceAuthor>
-  <ResourceDescription>Module for automated creation of AMP pages.</ResourceDescription>
+  <ResourceDescription>
+    <![CDATA[Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an Output Filter for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output.]]>
+  </ResourceDescription>
   <ResourceDisplayName>Accelerated Mobile Pages for Kentico</ResourceDisplayName>
   <ResourceGUID>027e9be4-bfa0-4a97-b77a-47b7f22f2725</ResourceGUID>
   <ResourceHasFiles>False</ResourceHasFiles>
