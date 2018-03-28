@@ -46,7 +46,7 @@ namespace Kentico.AcceleratedMobilePages
         {
             customElementsScripts = "";
 
-            // Process the resulting HTML using Html Agility Pack parser
+            // Process the resulting HTML using HTML Agility Pack parser
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(finalHtml);
             RemoveRestrictedElements(doc);
@@ -98,12 +98,12 @@ namespace Kentico.AcceleratedMobilePages
 
         /// <summary>
         /// Performs corrections required by AMP HTML standard using Regular Expressions
-        /// These corrections were not possible using Html Agility Pack parser
+        /// These corrections were not possible using HTML Agility Pack parser
         /// </summary>
         /// <param name="finalHtml">Final HTML string</param>
         private string PerformRegexCorrections(string finalHtml)
         {
-            // Initial html amp tag - replace only first occurrence
+            // Initial HTML amp tag - replace only first occurrence
             var regex = new Regex(Constants.HTML_TAG);
             finalHtml = regex.Replace(finalHtml, Constants.HTML_REPLACEMENT, 1);
 
@@ -239,7 +239,7 @@ namespace Kentico.AcceleratedMobilePages
                                    Settings.CmsFriendlyUrlExtension;
 
             // Extend the <head> tag with the compulsory markup and CSS styles
-            headTag +=  Constants.NEW_LINE +
+            headTag += Constants.NEW_LINE +
                         Constants.AMP_CHARSET + Constants.NEW_LINE +
                         ampRuntimeScript + Constants.NEW_LINE +
                         customElementsScripts +
@@ -247,7 +247,7 @@ namespace Kentico.AcceleratedMobilePages
                         Constants.AMP_VIEWPORT + Constants.NEW_LINE +
                         Constants.AMP_BOILERPLATE_CODE + Constants.NEW_LINE +
                         String.Format(Constants.AMP_CUSTOM_STYLE, styles) + Constants.NEW_LINE;
-            
+
             finalHtml = Regex.Replace(finalHtml, Constants.REGEX_HEAD, headTag);
             return finalHtml;
         }
@@ -256,9 +256,9 @@ namespace Kentico.AcceleratedMobilePages
         /// <summary>
         /// Returns CSS stylesheet for current page.
         /// Stylesheet can be:
-        ///     - normal css of current page
-        ///     - default css for all AMP pages
-        ///     - css set as AMP stylesheet for current page
+        ///     - normal CSS of current page
+        ///     - default CSS for all AMP pages
+        ///     - CSS set as AMP stylesheet for current page
         /// </summary>
         private string GetStylesheetText()
         {
@@ -275,7 +275,7 @@ namespace Kentico.AcceleratedMobilePages
                 // Default AMP CSS is not set, using ordinary CSS of current page
                 if (cssID == 0)
                 {
-                    cssText = DocumentContext.CurrentDocumentStylesheet.StylesheetText;
+                    cssText = DocumentContext.CurrentDocumentStylesheet?.StylesheetText;
                 }
                 else
                 {
