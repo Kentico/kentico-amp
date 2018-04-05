@@ -84,13 +84,15 @@ Even when using the AMP Filter there are still some things that need to be handl
 * Use only white-listed font providers via `<link>` tag or use other fonts using `@font-face` CSS rule.
 * Explicitly state the size for every image (height and width attribute).
 * In case of sites with complex styling, the stylesheets need to be reduced so that they do not exceed 50kB in total.
-* If a page contains scripts, social media embeds, advertisements, or other interactive elements, the elements need to be replaced with [AMP extended components](https://www.ampproject.org/docs/reference/components).
+* If a page contains scripts, on-line forms, social media embeds, advertisements, or other interactive elements, the elements need to be replaced with [AMP extended components](https://www.ampproject.org/docs/reference/components).
 
-## Scenarios covered by AMP Filter
+## Scenarios covered by the AMP Filter
 
-* In case of simple sites with CSSs smaller than 50kB (that don't break any [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
+* For simple sites with CSS totalling no more than 50kB in size (and adhering to the official [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
 
-* AMP Filter works best with simple pages. If a page contains only regular HTML without interactive elements (except for `<img>`, `<video>`, `<audio>`, `<iframe>`, `<form>` elements) AMP Filter will transform the page into AMP format.
+* The AMP filter is mainly intened for simple, static pages, i.e. pages containing regular HTML. Only the `<img>`, `<video>`, `<audio>`, and `<iframe>` interactive elements (adhering to the [AMP HTML Specification](https://www.ampproject.org/docs/fundamentals/spec)) are allowed. Pages that fulfill these requirements will be transformed into the AMP format.
+ 
+* The static `<form>` element used by ASP.NET web forms to store metadata and viewstate information is also converted to the AMP format. However, standard `<form>` elements included in the page's markup will not be submitted and processed by the server at all. To implement standard on-line form functionality (via the `<form>` tag), refer to the [amp-form](https://www.ampproject.org/docs/reference/components/amp-form) section of the official AMP documentation.
 
 ## Developing the module and contributing
  1. Read the [contribution guidelines](https://github.com/Kentico/kentico-amp/blob/master/CONTRIBUTING.md)
