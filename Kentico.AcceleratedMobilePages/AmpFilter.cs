@@ -375,8 +375,7 @@ namespace Kentico.AcceleratedMobilePages
                     return extensionlist[0];
                 }
             }
-            
-            return "";
+            return extensions;
         }
     }
 }
