@@ -69,8 +69,8 @@ namespace Kentico.AcceleratedMobilePages
         {
             string ampLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
                              Settings.AmpFilterDomainAlias +
-                             (DocumentContext.CurrentPageInfo.DocumentUrlPath ?? DocumentContext.CurrentAliasPath) +
-                             Settings.CmsFriendlyUrlExtension;
+                             (!String.IsNullOrEmpty(DocumentContext.CurrentPageInfo.DocumentUrlPath) ? DocumentContext.CurrentPageInfo.DocumentUrlPath : DocumentContext.CurrentAliasPath) +
+                             GetFriendlyExtension();
             string metaTag = String.Format(Constants.AMP_AMP_HTML_LINK, ampLink) + Constants.NEW_LINE;
             // Insert meta tag
             finalHtml = Regex.Replace(finalHtml, "</head>", metaTag + "</head>");
