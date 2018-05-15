@@ -235,8 +235,8 @@ namespace Kentico.AcceleratedMobilePages
 
             // Create a link pointing to the regular HTML version of the page
             string canonicalLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
-                                   SiteContext.CurrentSite.DomainName + (DocumentContext.CurrentPageInfo.DocumentUrlPath ?? DocumentContext.CurrentAliasPath) +
-                                   Settings.CmsFriendlyUrlExtension;
+                                   SiteContext.CurrentSite.DomainName + (!String.IsNullOrEmpty(DocumentContext.CurrentPageInfo.DocumentUrlPath) ? DocumentContext.CurrentPageInfo.DocumentUrlPath : DocumentContext.CurrentAliasPath) +
+                                   GetFriendlyExtension();
 
             // Extend the <head> tag with the compulsory markup and CSS styles
             headTag += Constants.NEW_LINE +
@@ -359,6 +359,21 @@ namespace Kentico.AcceleratedMobilePages
                     node.Attributes.Remove(attrName);
                 }
             }
+        }
+
+        private string GetFriendlyExtension()
+        {
+            var extensions = Settings.CmsFriendlyUrlExtension;
+            if(extensions.Length > 0)
+            {
+                var extensionlist = extensions.Split(';');
+                if (extensionlist.Length > 0)
+                {
+                    return extensionlist[0];
+                }
+            }
+            
+            return "";
         }
     }
 }
