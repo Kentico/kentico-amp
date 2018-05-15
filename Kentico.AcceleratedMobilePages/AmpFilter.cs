@@ -361,6 +361,9 @@ namespace Kentico.AcceleratedMobilePages
             }
         }
 
+        /// <summary>
+        /// Splits the Friendly URL Extension, and returns the first element
+        /// </summary>
         private string GetFriendlyExtension()
         {
             var extensions = Settings.CmsFriendlyUrlExtension;
