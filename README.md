@@ -137,4 +137,4 @@ Tested with Kentico 11.0 (net46).
 
 ## [License](https://github.com/Kentico/kentico-amp/blob/master/LICENSE.txt)
 
-
+![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/kentico-amp?pixel)
