@@ -57,7 +57,7 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
             CurrentMaster.HeaderActions.Enabled = false;
         }
 
-        if (Node != null && !URLHelper.IsPostback())
+        if (Node != null && !RequestHelper.IsPostBack())
         {
             ReloadData();
         }
