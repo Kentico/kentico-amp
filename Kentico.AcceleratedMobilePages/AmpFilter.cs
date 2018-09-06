@@ -20,6 +20,12 @@ namespace Kentico.AcceleratedMobilePages
 
 
         /// <summary>
+        /// Returns URL protocol prefix depending on the current connection
+        /// </summary>
+        private string ConnectionProtocolPrefix => CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP;
+
+
+        /// <summary>
         /// If the filter is enabled for current page, final HTML will be modified
         /// </summary>
         /// <param name="filter">Output filter</param>
@@ -67,10 +73,9 @@ namespace Kentico.AcceleratedMobilePages
         /// <param name="finalHtml">Final HTML string</param>
         private string AppendAmpHtmlLink(string finalHtml)
         {
-            string ampLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
+            string ampLink = ConnectionProtocolPrefix +
                              Settings.AmpFilterDomainAlias +
-                             (DocumentContext.CurrentPageInfo.DocumentUrlPath ?? DocumentContext.CurrentAliasPath) +
-                             Settings.CmsFriendlyUrlExtension;
+                             GetDocumentPath();
             string metaTag = String.Format(Constants.AMP_AMP_HTML_LINK, ampLink) + Constants.NEW_LINE;
             // Insert meta tag
             finalHtml = Regex.Replace(finalHtml, "</head>", metaTag + "</head>");
@@ -234,9 +239,9 @@ namespace Kentico.AcceleratedMobilePages
             string styles = GetStylesheetText();
 
             // Create a link pointing to the regular HTML version of the page
-            string canonicalLink = (CMSHttpContext.Current.Request.IsSecureConnection ? Constants.P_HTTPS : Constants.P_HTTP) +
-                                   SiteContext.CurrentSite.DomainName + (DocumentContext.CurrentPageInfo.DocumentUrlPath ?? DocumentContext.CurrentAliasPath) +
-                                   Settings.CmsFriendlyUrlExtension;
+            string canonicalLink = ConnectionProtocolPrefix +
+                                   SiteContext.CurrentSite.DomainName +
+                                   GetDocumentPath();
 
             // Extend the <head> tag with the compulsory markup and CSS styles
             headTag += Constants.NEW_LINE +
@@ -359,6 +364,19 @@ namespace Kentico.AcceleratedMobilePages
                     node.Attributes.Remove(attrName);
                 }
             }
+        }
+
+        
+        /// <summary>
+        /// Returns path of the currently processed document
+        /// </summary>
+        private string GetDocumentPath()
+        {
+            var documentPath = !String.IsNullOrEmpty(DocumentContext.CurrentPageInfo.DocumentUrlPath)
+                                ? DocumentContext.CurrentPageInfo.DocumentUrlPath
+                                : DocumentContext.CurrentAliasPath;
+
+            return documentPath + Settings.CmsFriendlyUrlExtension;
         }
     }
 }

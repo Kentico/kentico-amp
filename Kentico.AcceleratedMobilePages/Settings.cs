@@ -9,7 +9,7 @@ namespace Kentico.AcceleratedMobilePages
         /// <summary>
         /// Gets extensions that the system adds to page URLs on current site.
         /// </summary>
-        public static string CmsFriendlyUrlExtension => SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension");
+        public static string CmsFriendlyUrlExtension => SettingsKeyInfoProvider.GetValue(SiteContext.CurrentSiteName + ".CMSFriendlyURLExtension").Split(';')[0];
 
 
         /// <summary>
