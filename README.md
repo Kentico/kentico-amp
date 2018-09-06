@@ -3,7 +3,7 @@
 
 Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k11/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
 
-:bulb: Read [how we implemented AMP](https://devnet.kentico.com/articles/google-amping-the-kentico-advantage-site) on [Kentico Advantage website](http://amp.advantage.kentico.com/).
+:bulb: Read [how we implemented AMP](https://devnet.kentico.com/articles/google-amping-the-kentico-advantage-site) on Kentico Advantage website.
 
 ## Usage
 
@@ -39,7 +39,7 @@ There are several ways of including cascading style sheets into an AMP page:
 *	If none of the previous options is set, the AMP Filter will use the regular CSS stylesheet assigned to the page (either the site's default stylesheet or the page-specifc one). This option is not recommended, as the stylesheet could be bigger than 50kB (e.g., if it contains styles for the whole website).
 
 ### Further customization of AMP pages
-The AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, and therefore, they can't be automatically injected or replaced in the page's source code. 
+The AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, and therefore, they can't be automatically injected or replaced in the page's source code.
 
 You can use the `{% AmpFilter.IsAmpPage() %}` macro to find out whether the AMP Filter is enabled and active on the current page. This is useful for showing and hiding different parts of a web page. To do that, use the macro as a visibility condition of a web part.
 
@@ -66,7 +66,7 @@ Some advanced replacements (which were not possible to implement using the HtmlA
 
 ### Cascading style sheets
 The AMP Filter does not transform cascading stylesheets in any way. The developer must ensure that the stylesheet complies with [AMP HTML specification - stylesheet restrictions](https://www.ampproject.org/docs/reference/spec#stylesheets).
- 
+
 
 ### Global settings
 AMP Filter has two types of global settings:
@@ -91,7 +91,7 @@ Even when using the AMP Filter there are still some things that need to be handl
 * For simple sites with CSS totalling no more than 50kB in size (and adhering to the official [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
 
 * The AMP filter is mainly intened for simple, static pages, i.e. pages containing regular HTML. Only the `<img>`, `<video>`, `<audio>`, and `<iframe>` interactive elements (adhering to the [AMP HTML Specification](https://www.ampproject.org/docs/fundamentals/spec)) are allowed. Pages that fulfill these requirements will be transformed into the AMP format.
- 
+
 * The static `<form>` element used by ASP.NET web forms to store metadata and viewstate information is also converted to the AMP format. However, standard `<form>` elements included in the page's markup will not be submitted and processed by the server at all. To implement standard on-line form functionality (via the `<form>` tag), refer to the [amp-form](https://www.ampproject.org/docs/reference/components/amp-form) section of the official AMP documentation.
 
 ## Developing the module and contributing
@@ -103,33 +103,36 @@ Even when using the AMP Filter there are still some things that need to be handl
  1. Navigate to the root of the project (where the .sln file is)
  1. Fork this repo
  1. Init a git repo and fetch the web part
-        
+
         git init
         git remote add origin https://github.com/OWNER/kentico-amp.git
         git fetch
         git checkout origin/master -ft
 
  1. Restore DB data
-        
+
         Kentico\CMS\bin\ContinuousIntegration.exe -r
 
- 1. Open the web project in Visual Studio
- 1. Add `Kentico.AcceleratedMobilePages\Kentico.AcceleratedMobilePages.csproj` to the solution
- 1. Add `Kentico.AcceleratedMobilePages.Publisher\Kentico.AcceleratedMobilePages.Publisher.csproj` to the solution
- 1. Add reference from CMSApp to Kentico.AcceleratedMobilePages.csproj
- 1. Add reference from CMSApp to Kentico.AcceleratedMobilePages.Publisher.csproj
- 1. Build the solution
+ 1. Open the solution in Visual Studio
+ 1. Add the following projects to the solution:
+    * `Kentico.AcceleratedMobilePages\Kentico.AcceleratedMobilePages.csproj`
+    * `Kentico.AcceleratedMobilePages.Publisher\Kentico.AcceleratedMobilePages.Publisher.csproj`
+ 1. Reference the added projects from the CMSApp project:
+    1. Right-click the CMSApp project and select Add -> Reference...
+    1. Click Browse... and locate the projects on your filesystem
+    1. Click Add
+ 1. Rebuild the solution
  1. [Resign all macros](https://docs.kentico.com/k11/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
  1. Optional: Assign the module to one or more sites
  1. Make changes
  1. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
-        
+
         git status
         git commit -a -m "Fix XY"
         git push
-        
+
  1. Submit a pull request
-  
+
 ## Compatibility
 Tested with Kentico 11.0 (net46).
 
