@@ -1,4 +1,6 @@
-﻿namespace Kentico.AcceleratedMobilePages
+﻿using System.Text.RegularExpressions;
+
+namespace Kentico.AcceleratedMobilePages
 {
     public class Constants
     {
@@ -34,7 +36,8 @@
         public const string HTML_REPLACEMENT = "<html amp";
             
         // Head tag - required for finding the place where all the compulsory head markup will be inserted
-        public const string REGEX_HEAD = "(?i)<[\\s]*?head(>|[\\s][\\s\\S]*?>)";
+        private const string REGEX_HEAD_PATTERN = "(?i)<[\\s]*?head(>|[\\s][\\s\\S]*?>)";
+        public static readonly Regex HeadRegex = new Regex(REGEX_HEAD_PATTERN);
 
         // Internet Explorer conditional comments
         public const string REGEX_CONDITIONAL_COMMENTS = "<!(|--)\\[[^\\]]+\\]>[\\s\\S]*?<!\\[endif\\](|--)>";
