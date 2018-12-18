@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+
 using CMS.Base.Web.UI;
 using CMS.Core;
 using CMS.DataEngine;
 using CMS.Helpers;
 using CMS.SiteProvider;
 using CMS.UIControls;
+
 using Kentico.AcceleratedMobilePages;
 
 [SaveAction(0)]
@@ -140,8 +143,8 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
         if (q.Count != 0)
         {
             ShowControls(true);
-            chkDefaultCss.Checked = q.FirstObject.UseDefaultStylesheet;
-            selectStyleSheet.Value = q.FirstObject.StylesheetID.ToString();
+            chkDefaultCss.Checked = q.FirstOrDefault().UseDefaultStylesheet;
+            selectStyleSheet.Value = q.FirstOrDefault().StylesheetID.ToString();
             bool useDefaultChecked = chkDefaultCss.Checked;
             selectStyleSheet.Visible = !useDefaultChecked;
             labelSelectCss.Visible = !useDefaultChecked;
@@ -181,7 +184,7 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
                 else
                 {
                     // Update existing record
-                    ampInfo = q.FirstObject;
+                    ampInfo = q.FirstOrDefault();
                 }
 
                 // Update object properties
@@ -197,7 +200,7 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
                 if (q.Count != 0)
                 {
                     // Remove record from AmpFilterInfo table
-                    AmpFilterInfoProvider.DeleteAmpFilterInfo(q.FirstObject);
+                    AmpFilterInfoProvider.DeleteAmpFilterInfo(q.FirstOrDefault());
                 }
             }
         }

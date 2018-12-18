@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
+
 using CMS.DataEngine;
 using CMS.DocumentEngine;
 using CMS.Helpers;
@@ -7,6 +9,7 @@ using CMS.MacroEngine;
 using CMS.OutputFilter;
 using CMS.PortalEngine;
 using CMS.SiteProvider;
+
 using HtmlAgilityPack;
 
 namespace Kentico.AcceleratedMobilePages
@@ -269,7 +272,7 @@ namespace Kentico.AcceleratedMobilePages
 
             // Checking which CSS file to use
             ObjectQuery<AmpFilterInfo> q = AmpFilterInfoProvider.GetAmpFilters().WhereEquals("PageNodeGuid", DocumentContext.CurrentPageInfo.NodeGUID.ToString());
-            if (q.FirstObject.UseDefaultStylesheet)
+            if (q.FirstOrDefault().UseDefaultStylesheet)
             {
                 // Get the ID of default AMP CSS
                 string defaultID = Settings.AmpFilterDefaultCSS;
@@ -293,7 +296,7 @@ namespace Kentico.AcceleratedMobilePages
             else
             {
                 // Use specific AMP CSS set for this page
-                var cssInfo = CssStylesheetInfoProvider.GetCssStylesheetInfo(q.FirstObject.StylesheetID);
+                var cssInfo = CssStylesheetInfoProvider.GetCssStylesheetInfo(q.FirstOrDefault().StylesheetID);
                 if (cssInfo != null)
                 {
                     cssText = cssInfo.StylesheetText;
@@ -364,7 +367,7 @@ namespace Kentico.AcceleratedMobilePages
             }
         }
 
-        
+
         /// <summary>
         /// Returns path of the currently processed document
         /// </summary>
