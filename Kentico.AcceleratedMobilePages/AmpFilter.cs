@@ -78,7 +78,7 @@ namespace Kentico.AcceleratedMobilePages
                              GetDocumentPath();
             string metaTag = String.Format(Constants.AMP_AMP_HTML_LINK, ampLink) + Constants.NEW_LINE;
             // Insert meta tag
-            finalHtml = Regex.Replace(finalHtml, "</head>", metaTag + "</head>");
+            finalHtml = finalHtml.Replace("</head>", metaTag + "</head>");
 
             return finalHtml;
         }
@@ -108,21 +108,20 @@ namespace Kentico.AcceleratedMobilePages
         /// <param name="finalHtml">Final HTML string</param>
         private string PerformRegexCorrections(string finalHtml)
         {
-            // Initial HTML amp tag - replace only first occurrence
-            var regex = new Regex(Constants.HTML_TAG);
-            finalHtml = regex.Replace(finalHtml, Constants.HTML_REPLACEMENT, 1);
+            // Initial HTML amp tag
+            finalHtml = finalHtml.Replace(Constants.HTML_TAG, Constants.HTML_REPLACEMENT);
 
             // Remove conditional comments
-            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_CONDITIONAL_COMMENTS, "");
+            finalHtml = new Regex(Constants.REGEX_CONDITIONAL_COMMENTS).Replace(finalHtml, "");
 
             // Remove restricted attributes
-            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_ATTR_ONANY_SUFFIX, "");
-            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_ATTR_XML_ATTRIBUTES, "");
-            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_ATTR_IAMPANY_SUFFIX, "");
+            finalHtml = new Regex(Constants.REGEX_ATTR_ONANY_SUFFIX).Replace(finalHtml, "");
+            finalHtml = new Regex(Constants.REGEX_ATTR_XML_ATTRIBUTES).Replace(finalHtml, "");
+            finalHtml = new Regex(Constants.REGEX_ATTR_IAMPANY_SUFFIX).Replace(finalHtml, "");
 
             // Remove restricted attribute's values
-            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_NAME_CLASS, "");
-            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_NAME_ID, "");
+            finalHtml = new Regex(Constants.REGEX_NAME_CLASS).Replace(finalHtml, "");
+            finalHtml = new Regex(Constants.REGEX_NAME_ID).Replace(finalHtml, "");
 
             return finalHtml;
         }
@@ -226,7 +225,7 @@ namespace Kentico.AcceleratedMobilePages
         {
             // Save the original <head> tag before replacement later
             String headTag = "";
-            Match m = Regex.Match(finalHtml, Constants.REGEX_HEAD);
+            Match m = Constants.HeadRegex.Match(finalHtml);
             if (m.Success)
             {
                 headTag = m.Value;
@@ -253,8 +252,7 @@ namespace Kentico.AcceleratedMobilePages
                         Constants.AMP_BOILERPLATE_CODE + Constants.NEW_LINE +
                         String.Format(Constants.AMP_CUSTOM_STYLE, styles) + Constants.NEW_LINE;
 
-            finalHtml = Regex.Replace(finalHtml, Constants.REGEX_HEAD, headTag);
-            return finalHtml;
+            return Constants.HeadRegex.Replace(finalHtml, headTag);
         }
 
 
