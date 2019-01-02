@@ -1,7 +1,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Kentico.AcceleratedMobilePages.svg)](https://www.nuget.org/packages/Kentico.AcceleratedMobilePages/)
 # Accelerated Mobile Pages Module for Kentico
 
-Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k11/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
+Accelerated Mobile Pages Module (AMP Filter) is a custom module for Kentico CMS and EMS. It consists of an [Output Filter](https://docs.kentico.com/k12/configuring-kentico/using-output-filters) for transforming regular HTML to AMP HTML format and a macro method that makes it easy to adjust and fine-tune the rendered output. The project is based on a [master thesis (EN)](https://is.muni.cz/th/409956/fi_m/?lang=en) of Daniel Minarik ([full text](https://is.muni.cz/th/409956/fi_m/thesis.pdf)).
 
 :bulb: Read [how we implemented AMP](https://devnet.kentico.com/articles/google-amping-the-kentico-advantage-site) on Kentico Advantage website.
 
@@ -96,7 +96,7 @@ Even when using the AMP Filter there are still some things that need to be handl
 
 ## Developing the module and contributing
  1. Read the [contribution guidelines](https://github.com/Kentico/kentico-amp/blob/master/CONTRIBUTING.md)
- 1. Enable the [continuous integration](https://docs.kentico.com/display/k11/Setting+up+continuous+integration) module
+ 1. Enable the [continuous integration](https://docs.kentico.com/display/k12/Setting+up+continuous+integration) module
  1. Remove `<ObjectType>cms.settingskey</ObjectType>` from the `CMS\App_Data\CIRepository\repository.config`
  1. Serialize all objects to disk
  1. Open a command prompt
@@ -122,7 +122,7 @@ Even when using the AMP Filter there are still some things that need to be handl
     1. Click Browse... and locate the projects on your filesystem
     1. Click Add
  1. Rebuild the solution
- 1. [Resign all macros](https://docs.kentico.com/k11/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
+ 1. [Resign all macros](https://docs.kentico.com/k12/macro-expressions/troubleshooting-macros/working-with-macro-signatures)
  1. Optional: Assign the module to one or more sites
  1. Make changes
  1. Use combination of `git add`, `git commit` and `git push` to transfer your changes to GitHub
@@ -134,7 +134,7 @@ Even when using the AMP Filter there are still some things that need to be handl
  1. Submit a pull request
 
 ## Compatibility
-Tested with Kentico 11.0 (net46).
+Tested with Kentico 12.0 (net461).
 
 ## [Questions & Support](https://github.com/Kentico/Home/blob/master/README.md)
 

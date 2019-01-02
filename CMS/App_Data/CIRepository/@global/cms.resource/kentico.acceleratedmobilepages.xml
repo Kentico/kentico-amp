@@ -9,6 +9,6 @@
   <ResourceHasFiles>False</ResourceHasFiles>
   <ResourceIsInDevelopment>True</ResourceIsInDevelopment>
   <ResourceName>Kentico.AcceleratedMobilePages</ResourceName>
-  <ResourceVersion>11.0.0</ResourceVersion>
+  <ResourceVersion>12.0.0</ResourceVersion>
   <ShowInDevelopment>False</ShowInDevelopment>
 </cms.resource>
