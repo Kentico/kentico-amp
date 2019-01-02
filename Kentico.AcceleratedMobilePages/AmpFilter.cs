@@ -272,7 +272,10 @@ namespace Kentico.AcceleratedMobilePages
 
             // Checking which CSS file to use
             ObjectQuery<AmpFilterInfo> q = AmpFilterInfoProvider.GetAmpFilters().WhereEquals("PageNodeGuid", DocumentContext.CurrentPageInfo.NodeGUID.ToString());
-            if (q.FirstOrDefault().UseDefaultStylesheet)
+            AmpFilterInfo ampFilterInfo = q.FirstOrDefault();
+
+            bool useDefaultStylesheet = ampFilterInfo?.UseDefaultStylesheet ?? true;
+            if (useDefaultStylesheet)
             {
                 // Get the ID of default AMP CSS
                 string defaultID = Settings.AmpFilterDefaultCSS;
@@ -296,7 +299,8 @@ namespace Kentico.AcceleratedMobilePages
             else
             {
                 // Use specific AMP CSS set for this page
-                var cssInfo = CssStylesheetInfoProvider.GetCssStylesheetInfo(q.FirstOrDefault().StylesheetID);
+                int stylesheetID = ampFilterInfo?.StylesheetID ?? 0;
+                var cssInfo = CssStylesheetInfoProvider.GetCssStylesheetInfo(stylesheetID);
                 if (cssInfo != null)
                 {
                     cssText = cssInfo.StylesheetText;

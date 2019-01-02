@@ -138,13 +138,15 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
         // Sets the checkbox checked if AMP filter is enabled for current node GUID
         ObjectQuery<AmpFilterInfo> q = GetAmpFilterInfoForGuid(Node.NodeGUID.ToString());
         chkEnableAmpFilter.Checked = q.Count != 0;
+        AmpFilterInfo ampInfo = q.FirstOrDefault();
 
         // Set controls
-        if (q.Count != 0)
+        if (q.Count != 0 && ampInfo != null)
         {
             ShowControls(true);
-            chkDefaultCss.Checked = q.FirstOrDefault().UseDefaultStylesheet;
-            selectStyleSheet.Value = q.FirstOrDefault().StylesheetID.ToString();
+
+            chkDefaultCss.Checked = ampInfo.UseDefaultStylesheet;
+            selectStyleSheet.Value = ampInfo.StylesheetID.ToString();
             bool useDefaultChecked = chkDefaultCss.Checked;
             selectStyleSheet.Visible = !useDefaultChecked;
             labelSelectCss.Visible = !useDefaultChecked;
@@ -187,12 +189,15 @@ public partial class CMSModules_AcceleratedMobilePages_Default : CMSPropertiesPa
                     ampInfo = q.FirstOrDefault();
                 }
 
-                // Update object properties
-                ampInfo.PageNodeGUID = nodeGuid;
-                ampInfo.SiteID = SiteContext.CurrentSiteID;
-                ampInfo.UseDefaultStylesheet = chkDefaultCss.Checked;
-                ampInfo.StylesheetID = ValidationHelper.GetInteger(selectStyleSheet.Value, 0);
-                AmpFilterInfoProvider.SetAmpFilterInfo(ampInfo);
+                if (ampInfo != null)
+                {
+                    // Update object properties
+                    ampInfo.PageNodeGUID = nodeGuid;
+                    ampInfo.SiteID = SiteContext.CurrentSiteID;
+                    ampInfo.UseDefaultStylesheet = chkDefaultCss.Checked;
+                    ampInfo.StylesheetID = ValidationHelper.GetInteger(selectStyleSheet.Value, 0);
+                    AmpFilterInfoProvider.SetAmpFilterInfo(ampInfo);
+                }
             }
             else
             {
