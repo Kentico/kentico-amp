@@ -13,7 +13,7 @@ using CMS;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kentico software s.r.o.")]
 [assembly: AssemblyProduct("AcceleratedMobilePages")]
-[assembly: AssemblyCopyright("Copyright © 2018 Kentico software s.r.o.")]
+[assembly: AssemblyCopyright("Copyright © 2019 Kentico software s.r.o.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
