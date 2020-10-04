@@ -36,7 +36,7 @@ There are several ways of including cascading style sheets into an AMP page:
 
 *	Set a CSS stylesheet for every AMP page separately (Pages -> Edit -> Properties -> AMP Filter -> uncheck "Use default stylesheet" and select the desired stylesheet)
 
-*	If none of the previous options is set, the AMP Filter will use the regular CSS stylesheet assigned to the page (either the site's default stylesheet or the page-specifc one). This option is not recommended, as the stylesheet could be bigger than 50kB (e.g., if it contains styles for the whole website).
+*	If none of the previous options is set, the AMP Filter will use the regular CSS stylesheet assigned to the page (either the site's default stylesheet or the page-specific one). This option is not recommended, as the stylesheet could be bigger than 50kB (e.g., if it contains styles for the whole website).
 
 ### Further customization of AMP pages
 The AMP standard offers a lot of components or tags which do not have an ordinary HTML equivalent, and therefore, they can't be automatically injected or replaced in the page's source code.
@@ -88,9 +88,9 @@ Even when using the AMP Filter there are still some things that need to be handl
 
 ## Scenarios covered by the AMP Filter
 
-* For simple sites with CSS totalling no more than 50kB in size (and adhering to the official [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
+* For simple sites with CSS totaling no more than 50kB in size (and adhering to the official [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
 
-* The AMP filter is mainly intened for simple, static pages, i.e. pages containing regular HTML. Only the `<img>`, `<video>`, `<audio>`, and `<iframe>` interactive elements (adhering to the [AMP HTML Specification](https://www.ampproject.org/docs/fundamentals/spec)) are allowed. Pages that fulfill these requirements will be transformed into the AMP format.
+* The AMP filter is mainly intended for simple, static pages, i.e. pages containing regular HTML. Only the `<img>`, `<video>`, `<audio>`, and `<iframe>` interactive elements (adhering to the [AMP HTML Specification](https://www.ampproject.org/docs/fundamentals/spec)) are allowed. Pages that fulfill these requirements will be transformed into the AMP format.
 
 * The static `<form>` element used by ASP.NET web forms to store metadata and viewstate information is also converted to the AMP format. However, standard `<form>` elements included in the page's markup will not be submitted and processed by the server at all. To implement standard on-line form functionality (via the `<form>` tag), refer to the [amp-form](https://www.ampproject.org/docs/reference/components/amp-form) section of the official AMP documentation.
 
