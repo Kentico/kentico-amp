@@ -88,7 +88,7 @@ Even when using the AMP Filter there are still some things that need to be handl
 
 ## Scenarios covered by the AMP Filter
 
-* For simple sites with CSS totalling no more than 50kB in size (and adhering to the official [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
+* For simple sites with CSS totaling no more than 50kB in size (and adhering to the official [AMP rules](https://www.ampproject.org/docs/reference/spec#stylesheets)), there's no need to create AMP-specific stylesheets - the sites will work correctly with the regular stylesheets.
 
 * The AMP filter is mainly intended for simple, static pages, i.e. pages containing regular HTML. Only the `<img>`, `<video>`, `<audio>`, and `<iframe>` interactive elements (adhering to the [AMP HTML Specification](https://www.ampproject.org/docs/fundamentals/spec)) are allowed. Pages that fulfill these requirements will be transformed into the AMP format.
 
