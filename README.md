@@ -140,4 +140,3 @@ Tested with Kentico 12.0 (net461).
 
 ## [License](https://github.com/Kentico/kentico-amp/blob/master/LICENSE.txt)
 
-![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/kentico-amp?pixel)
